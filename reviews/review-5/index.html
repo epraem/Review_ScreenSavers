@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Review Billboard — Editorial Quote</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { overflow: hidden; font-family: 'Segoe UI', Arial, sans-serif; }
+  .back-link { position: fixed; top: 16px; left: 16px; z-index: 100; color: #fff; opacity: 0.55; text-decoration: none; font-size: 14px; font-weight: 600; }
+  .back-link:hover { opacity: 1; }
+  .stars { color: #FFB800; }
+
+  @keyframes bb-fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes bb-fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes bb-slideR { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+
+  .scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(115deg,#050d2e 0%, #0d2461 55%, #1749b8 100%);
+    display: flex;
+    align-items: center;
+  }
+
+  .giant-quote {
+    position: absolute;
+    top: -11.1vh;
+    left: 3.1vw;
+    font-size: 57.4vh;
+    line-height: 1;
+    font-weight: 800;
+    color: rgba(255,255,255,0.07);
+    font-family: Georgia, serif;
+  }
+
+  .row {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: clamp(40px, 4.7vw, 90px);
+    padding: 0 6.8vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .text-col { flex: 1; }
+
+  .rating-line { display: flex; align-items: center; gap: clamp(10px, 1.9vh, 20px); animation: bb-fadeIn 0.8s ease-out both; }
+  .stars-row { font-size: clamp(24px, 4.1vh, 44px); letter-spacing: clamp(3px, 0.56vh, 6px); }
+  .rating-label { color: rgba(255,255,255,0.7); font-size: clamp(14px, 2.2vh, 24px); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+
+  .headline {
+    margin-top: clamp(18px, 3.5vh, 38px);
+    font-size: clamp(28px, 5.7vh, 62px);
+    line-height: 1.28;
+    font-weight: 600;
+    color: #fff;
+    text-wrap: pretty;
+    animation: bb-fadeUp 1.1s ease-out both;
+  }
+
+  .subline {
+    margin-top: clamp(12px, 2.4vh, 26px);
+    font-size: clamp(18px, 3.1vh, 34px);
+    line-height: 1.4;
+    color: rgba(255,255,255,0.72);
+    font-weight: 500;
+    text-wrap: pretty;
+  }
+
+  .rule { margin-top: clamp(22px, 4.4vh, 48px); height: 3px; width: clamp(60px, 6.25vw, 120px); background: #FFB800; }
+  .name { margin-top: clamp(12px, 2.4vh, 26px); font-size: clamp(20px, 3vh, 32px); font-weight: 700; color: #fff; }
+
+  .photo-col { width: 21.9vw; display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 3.3vh, 36px); animation: bb-slideR 0.9s ease-out both; }
+
+  .avatar {
+    width: 17.7vw;
+    max-width: 340px;
+    aspect-ratio: 1;
+    border-radius: clamp(14px, 2.2vh, 24px);
+    overflow: hidden;
+    background: #22306b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+
+  .avatar svg { width: 46%; height: 46%; fill: rgba(255,255,255,0.6); }
+
+  .badge {
+    background: #fff;
+    border-radius: clamp(8px, 1.1vh, 12px);
+    padding: clamp(10px, 1.5vh, 16px) clamp(18px, 1.8vw, 34px);
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 0.6vw, 12px);
+  }
+
+  .badge-dot {
+    width: clamp(18px, 3vh, 32px);
+    height: clamp(18px, 3vh, 32px);
+    border-radius: 50%;
+    background: linear-gradient(135deg,#2563eb,#1e40af);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .badge-dot span { width: 46%; height: 46%; border-radius: 50%; border: 4px solid #fff; }
+  .badge-label { font-size: clamp(14px, 2.6vh, 28px); font-weight: 800; color: #0a1a4a; letter-spacing: 1px; }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(14px, 2.4vh, 26px) 3.3vw;
+    background: rgba(0,0,0,0.25);
+    box-sizing: border-box;
+  }
+
+  .footer span { color: #fff; font-size: clamp(14px, 2vh, 22px); font-weight: 600; }
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+<main class="scene">
+  <div class="giant-quote">&ldquo;</div>
+
+  <div class="row">
+    <div class="text-col">
+      <div class="rating-line">
+        <div class="stars stars-row">&starf;&starf;&starf;&starf;&starf;</div>
+        <div class="rating-label">5.0 on Google</div>
+      </div>
+      <div class="headline">Absolutely wonderful experience! The service was exceptional and the atmosphere was perfect.</div>
+      <div class="subline">Highly recommend to anyone looking for quality.</div>
+      <div class="rule"></div>
+      <div class="name">Sarah Johnson</div>
+    </div>
+
+    <div class="photo-col">
+      <div class="avatar">
+        <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5Z"/></svg>
+      </div>
+      <div class="badge">
+        <div class="badge-dot"><span></span></div>
+        <div class="badge-label">LOGOIPSUM</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>123 Main Street, City, State 12345</span>
+    <span>(555) 123-4567</span>
+    <span>www.yourbusiness.com</span>
+  </div>
+</main>
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>

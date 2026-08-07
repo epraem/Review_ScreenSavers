@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Review Screensaver — Google My Business</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    color: #fff;
+    opacity: 0.6;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+  }
+  .back-link:hover { opacity: 1; }
+
+  /* Slowly drifting dark-blue gradient — background-position animates
+     across an oversized gradient so the color wash never sits still. */
+  .scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(120deg, #050a24 0%, #0d1866 28%, #1a2f9e 52%, #3a1264 76%, #08061a 100%);
+    background-size: 260% 260%;
+    animation: bg-drift 26s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes bg-drift {
+    0% { background-position: 0% 30%; }
+    50% { background-position: 100% 70%; }
+    100% { background-position: 0% 30%; }
+  }
+
+  /* Soft glowing orbs, each drifting on its own slow float path. */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    pointer-events: none;
+  }
+
+  .orb--1 {
+    width: 34vw;
+    height: 34vw;
+    top: -8%;
+    left: -6%;
+    background: radial-gradient(circle, rgba(60, 110, 255, 0.65) 0%, rgba(60, 110, 255, 0) 70%);
+    animation: orb-float-1 22s ease-in-out infinite alternate;
+  }
+
+  .orb--2 {
+    width: 30vw;
+    height: 30vw;
+    bottom: -10%;
+    right: -6%;
+    background: radial-gradient(circle, rgba(0, 224, 255, 0.5) 0%, rgba(0, 224, 255, 0) 70%);
+    animation: orb-float-2 26s ease-in-out infinite alternate;
+  }
+
+  .orb--3 {
+    width: 22vw;
+    height: 22vw;
+    top: 40%;
+    left: 60%;
+    background: radial-gradient(circle, rgba(200, 60, 255, 0.5) 0%, rgba(200, 60, 255, 0) 70%);
+    animation: orb-float-3 19s ease-in-out infinite alternate;
+  }
+
+  @keyframes orb-float-1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(6vw, 5vh) scale(1.12); }
+  }
+  @keyframes orb-float-2 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-5vw, -6vh) scale(1.15); }
+  }
+  @keyframes orb-float-3 {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+    100% { transform: translate(-4vw, 4vh) scale(0.9); opacity: 1; }
+  }
+
+  /* Twinkling star specks, same box-shadow parallax trick used across
+     the project's other dark screensavers. */
+  .stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: stars-drift 22s ease-in-out infinite;
+  }
+
+  @keyframes stars-drift {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-9vw, -11vh); }
+    100% { transform: translate(0, 0); }
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: clamp(20px, 3.4vh, 38px);
+    max-width: min(1000px, 78vw);
+    padding: clamp(20px, 2.6vh, 30px) clamp(32px, 5vw, 64px) clamp(40px, 6vh, 72px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: clamp(20px, 2.6vh, 32px);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .brand-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-badge img {
+    height: clamp(64px, 9.6vh, 108px);
+    width: auto;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+  }
+
+  .avatar {
+    width: clamp(70px, 9vh, 100px);
+    height: clamp(70px, 9vh, 100px);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ffb020;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(160deg, #4b5b8c, #232c4d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar svg { width: 62%; height: 62%; fill: rgba(255, 255, 255, 0.85); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .quote {
+    font-family: 'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: clamp(20px, 3.4vh, 40px);
+    line-height: 1.45;
+    color: #fff;
+    max-width: 46ch;
+  }
+
+  .attribution {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2vw, 22px);
+  }
+
+  .gmb-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .gmb-badge__icon {
+    width: clamp(54px, 6.6vh, 72px);
+    height: clamp(54px, 6.6vh, 72px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.35));
+  }
+
+  .gmb-badge__icon img { width: 100%; height: 100%; object-fit: contain; }
+
+  .attribution-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .stars-row { display: flex; gap: 4px; }
+  .stars-row svg {
+    width: clamp(28px, 3.8vh, 42px);
+    height: clamp(28px, 3.8vh, 42px);
+    fill: #ffc233;
+    filter: drop-shadow(0 0 6px rgba(255, 194, 51, 0.5));
+    animation: star-shine 3s ease-in-out infinite;
+  }
+  .stars-row svg:nth-child(1) { animation-delay: 0s; }
+  .stars-row svg:nth-child(2) { animation-delay: 0.22s; }
+  .stars-row svg:nth-child(3) { animation-delay: 0.44s; }
+  .stars-row svg:nth-child(4) { animation-delay: 0.66s; }
+  .stars-row svg:nth-child(5) { animation-delay: 0.88s; }
+
+  @keyframes star-shine {
+    0%, 100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 6px rgba(255, 194, 51, 0.5));
+    }
+    5% {
+      transform: scale(1.03);
+      filter: drop-shadow(0 0 9px rgba(255, 210, 100, 0.65));
+    }
+    10% {
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 14px rgba(255, 224, 130, 0.9));
+    }
+    15% {
+      transform: scale(1.03);
+      filter: drop-shadow(0 0 9px rgba(255, 210, 100, 0.65));
+    }
+    20% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 6px rgba(255, 194, 51, 0.5));
+    }
+  }
+
+  .reviewer-name {
+    font-size: clamp(16px, 2vh, 22px);
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: clamp(18px, 3vh, 32px);
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 clamp(24px, 4vw, 56px);
+    font-size: clamp(13px, 1.6vh, 16px);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .footer-left { display: flex; align-items: center; gap: clamp(20px, 2.6vw, 32px); }
+  .footer-item { display: flex; align-items: center; gap: 8px; }
+  .footer-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+
+<main class="scene">
+  <div class="orb orb--1"></div>
+  <div class="orb orb--2"></div>
+  <div class="orb orb--3"></div>
+  <div class="stars" id="stars"></div>
+
+  <div class="content">
+    <div class="brand-badge">
+      <img src="../../assets/img/NTV_logo_white_horz_.png" alt="NTV 360" />
+    </div>
+
+    <div class="avatar">
+      <img src="../../assets/img/person.jpg" alt="Sarah Johnson" />
+    </div>
+
+    <p class="quote">&ldquo;Absolutely wonderful experience! The service was exceptional and the atmosphere was perfect. Highly recommend to anyone looking for quality.&rdquo;</p>
+
+    <div class="attribution">
+      <div class="gmb-badge">
+        <div class="gmb-badge__icon"><img src="../../assets/icons/business.png" alt="Google Business Profile" /></div>
+      </div>
+      <div class="attribution-text">
+        <div class="stars-row">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="reviewer-name">Sarah Johnson</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <span class="footer-item">
+        <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 8 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
+        123 Main Street, City, State 12345
+      </span>
+      <span class="footer-item">
+        <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.4 6.4l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.5 0 1 .4 1 1V20c0 .5-.5 1-1 1C10.5 21 3 13.5 3 4c0-.5.4-1 1-1h3.5c.6 0 1 .5 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1l-2.3 2.3Z"/></svg>
+        (555) 123-4567
+      </span>
+    </div>
+    <span class="footer-item">
+      <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.9 9h-3.2c-.1-2-.6-3.8-1.3-5.3A8 8 0 0 1 19.9 11ZM12 4c.9 1.3 1.6 3.4 1.7 7h-3.4c.1-3.6.8-5.7 1.7-7Zm-2.4.7C8.9 6.2 8.4 8 8.3 10H5.1a8 8 0 0 1 4.5-5.3ZM5.1 13h3.2c.1 2 .6 3.8 1.3 5.3A8 8 0 0 1 5.1 13Zm4.9 6.6c-.9-1.3-1.6-3.4-1.7-7h3.4c-.1 3.6-.8 5.7-1.7 7Zm2.4-.7c.7-1.5 1.2-3.3 1.3-5.3h3.2a8 8 0 0 1-4.5 5.3Z"/></svg>
+      www.yourbusiness.com
+    </span>
+  </div>
+</main>
+
+<script>
+  // Twinkling star field, same box-shadow parallax technique used in the
+  // other dark screensavers.
+  function generateStarShadows(count, spread) {
+    const shadows = [];
+    for (let i = 0; i < count; i++) {
+      const x = Math.floor(Math.random() * spread);
+      const y = Math.floor(Math.random() * spread);
+      shadows.push(`${x}px ${y}px #FFF`);
+    }
+    return shadows.join(', ');
+  }
+  document.getElementById('stars').style.boxShadow = generateStarShadows(90, 1600);
+</script>
+
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>

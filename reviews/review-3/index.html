@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Review Billboard — Split Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { overflow: hidden; font-family: 'Segoe UI', Arial, sans-serif; }
+  .back-link { position: fixed; top: 16px; left: 16px; z-index: 100; color: #fff; opacity: 0.55; text-decoration: none; font-size: 14px; font-weight: 600; }
+  .back-link:hover { opacity: 1; }
+
+  @keyframes bb-twinkle { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.75; transform:scale(1.08); } }
+  @keyframes bb-slideL { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:translateX(0); } }
+  @keyframes bb-slideR { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+
+  .scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #0a1a4a;
+    display: flex;
+  }
+
+  .sidebar {
+    width: 33.3vw;
+    height: 100%;
+    background: linear-gradient(160deg,#1e40af,#0a1a4a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(24px, 5.6vh, 60px);
+    box-sizing: border-box;
+    animation: bb-slideL 0.9s ease-out both;
+  }
+
+  .badge {
+    background: #fff;
+    border-radius: clamp(8px, 1.3vh, 14px);
+    padding: clamp(10px, 1.7vh, 18px) clamp(18px, 1.9vw, 36px);
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 0.6vw, 12px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  .badge-dot {
+    width: clamp(20px, 3.3vh, 36px);
+    height: clamp(20px, 3.3vh, 36px);
+    border-radius: 50%;
+    background: linear-gradient(135deg,#2563eb,#1e40af);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .badge-dot span { width: 46%; height: 46%; border-radius: 50%; border: 4px solid #fff; }
+  .badge-label { font-size: clamp(16px, 3vh, 32px); font-weight: 800; color: #0a1a4a; }
+
+  .avatar {
+    margin-top: clamp(28px, 4.8vh, 52px);
+    width: clamp(110px, 20.4vh, 220px);
+    height: clamp(110px, 20.4vh, 220px);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid rgba(255,255,255,0.4);
+    background: #22306b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .avatar svg { width: 52%; height: 52%; fill: rgba(255,255,255,0.7); }
+
+  .name { margin-top: clamp(20px, 4.1vh, 44px); font-size: clamp(22px, 3.7vh, 40px); font-weight: 700; color: #fff; }
+  .stars-row {
+    margin-top: clamp(10px, 1.7vh, 18px);
+    font-size: clamp(22px, 3.7vh, 40px);
+    letter-spacing: clamp(2px, 0.46vh, 5px);
+    color: #FFB800;
+    animation: bb-twinkle 2.4s ease-in-out 0.9s infinite;
+  }
+
+  .gmb-chip {
+    margin-top: clamp(20px, 4.1vh, 44px);
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.3vh, 14px);
+    background: rgba(255,255,255,0.1);
+    padding: clamp(8px, 1.3vh, 14px) clamp(14px, 1.4vw, 26px);
+    border-radius: clamp(6px, 1.1vh, 12px);
+  }
+
+  .gmb-chip-icon {
+    width: clamp(18px, 3vh, 32px);
+    height: clamp(18px, 3vh, 32px);
+    border-radius: 6px;
+    background: #4285F4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: clamp(11px, 1.7vh, 18px);
+    flex-shrink: 0;
+  }
+
+  .gmb-chip-label { color: #fff; font-size: clamp(13px, 2vh, 22px); font-weight: 600; }
+
+  .quote-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: clamp(60px, 11.1vh, 120px) clamp(40px, 4.7vw, 90px) clamp(80px, 13.9vh, 150px);
+    box-sizing: border-box;
+    animation: bb-slideR 0.9s ease-out both;
+  }
+
+  .quote-wrap div {
+    font-size: clamp(26px, 5.4vh, 58px);
+    line-height: 1.4;
+    font-weight: 600;
+    color: #fff;
+    text-wrap: pretty;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(16px, 3vh, 32px) clamp(28px, 3.3vw, 64px);
+    background: rgba(0,0,0,0.25);
+    box-sizing: border-box;
+  }
+
+  .footer span { color: #fff; font-size: clamp(14px, 2vh, 22px); font-weight: 600; }
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+<main class="scene">
+  <div class="sidebar">
+    <div class="badge">
+      <div class="badge-dot"><span></span></div>
+      <div class="badge-label">LOGOIPSUM</div>
+    </div>
+
+    <div class="avatar">
+      <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5Z"/></svg>
+    </div>
+
+    <div class="name">Sarah Johnson</div>
+    <div class="stars-row">&starf;&starf;&starf;&starf;&starf;</div>
+
+    <div class="gmb-chip">
+      <div class="gmb-chip-icon">G</div>
+      <div class="gmb-chip-label">Google Reviews</div>
+    </div>
+  </div>
+
+  <div class="quote-wrap">
+    <div>Absolutely wonderful experience! The service was exceptional and the atmosphere was perfect. Highly recommend to anyone looking for quality.</div>
+  </div>
+
+  <div class="footer">
+    <span>123 Main Street, City, State 12345</span>
+    <span>(555) 123-4567 &middot; www.yourbusiness.com</span>
+  </div>
+</main>
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>

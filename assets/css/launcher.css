@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--ntv-font);
+  background: var(--ntv-navy);
+  color: var(--ntv-white);
+  display: flex;
+  justify-content: center;
+}
+
+.menu {
+  width: min(920px, 92vw);
+  text-align: center;
+  padding: 40px 0;
+}
+
+.top-nav {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(253, 253, 253, 0.15);
+  background: rgba(253, 253, 253, 0.04);
+}
+
+.top-nav__tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ntv-gray-light);
+  font-family: var(--ntv-font);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.top-nav__tab:hover {
+  color: var(--ntv-white);
+}
+
+.top-nav__tab.is-active {
+  background: var(--ntv-gradient);
+  color: var(--ntv-white);
+}
+
+.view {
+  margin-top: 32px;
+}
+
+.empty-state {
+  margin-top: 40px;
+  padding: 60px 24px;
+  border-radius: 16px;
+  border: 1px dashed rgba(253, 253, 253, 0.2);
+  color: var(--ntv-gray-light);
+}
+
+.menu__title {
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--ntv-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.menu__subtitle {
+  margin-top: 8px;
+  color: var(--ntv-gray-light);
+  font-weight: 400;
+}
+
+.menu__grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.menu__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(253, 253, 253, 0.15);
+  background: rgba(253, 253, 253, 0.04);
+  color: var(--ntv-white);
+  text-decoration: none;
+  text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.menu__card:not(.menu__card--placeholder):hover {
+  transform: translateY(-4px);
+  border-color: var(--ntv-orange);
+}
+
+.menu__card--placeholder {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 16:9 preview window — the iframe renders each screensaver at its native
+   1920x1080 and is scaled down by launcher.js to fit the window. */
+.menu__card-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #000;
+}
+
+.menu__card-preview iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  border: 0;
+  pointer-events: none;
+  transform-origin: top left;
+}
+
+.menu__card-label {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.menu__card-desc {
+  font-size: 14px;
+  color: var(--ntv-gray-light);
+}
+
+/* Wraps each card so the "Show Source Code" trigger can sit outside the
+   preview/description, bottom-right, instead of floating inside the
+   iframe where it would cover the design. */
+.menu__card-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__card-source {
+  align-self: flex-end;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  appearance: none;
+  border: 1px solid rgba(253, 253, 253, 0.18);
+  background: rgba(253, 253, 253, 0.04);
+  color: var(--ntv-gray-light);
+  font-family: var(--ntv-font);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.menu__card-source:hover {
+  color: var(--ntv-white);
+  border-color: var(--ntv-orange);
+  background: rgba(253, 253, 253, 0.08);
+}
+
+.menu__card-source-icon {
+  font-family: 'Space Mono', 'JetBrains Mono', monospace;
+  color: var(--ntv-orange);
+  font-size: 12px;
+}

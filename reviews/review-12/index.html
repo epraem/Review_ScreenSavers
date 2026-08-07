@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Review Billboard — Diagonal Split</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #00263E;
+    --navy-dark: #020B14;
+    --blue: #1C63B7;
+    --ink: #16202B;
+    --paper: #FAFBFC;
+    --line: #E2E8EE;
+    --muted: #5C6B7A;
+    --violet: #A00558;
+    --red: #EF060F;
+    --orange: #F18029;
+    --gold: #F5A623;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { overflow: hidden; font-family: 'Inter', Arial, sans-serif; }
+  .back-link { position: fixed; top: 16px; left: 16px; z-index: 100; color: #fff; opacity: 0.55; text-decoration: none; font-size: 14px; font-weight: 600; }
+  .back-link:hover { opacity: 1; }
+
+  @keyframes bb-fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes bb-drift { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(2vw, 2vh) scale(1.08); } }
+  @keyframes bb-drift-2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-1.8vw, -2.2vh) scale(0.94); } }
+  @keyframes bb-breathe { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.06); opacity: 0.6; } }
+  @keyframes bb-pulse { 0%,100% { opacity: 0.06; } 50% { opacity: 0.1; } }
+
+  .scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #FFFFFF 0%, var(--paper) 55%, #F1F5F9 100%);
+    display: flex;
+  }
+
+  .aurora-bg { position: absolute; border-radius: 50%; filter: blur(60px); z-index: 0; animation: bb-drift 17s ease-in-out infinite alternate; }
+  .aurora-bg--1 { top: -16%; right: 8%; width: 36%; height: 52%; background: radial-gradient(circle, rgba(160,5,88,0.13), transparent 70%); }
+  .aurora-bg--2 { bottom: -20%; right: -4%; width: 42%; height: 58%; background: radial-gradient(circle, rgba(241,128,41,0.15), transparent 70%); animation-delay: -8s; }
+  .aurora-bg--3 { top: 34%; right: 30%; width: 24%; height: 34%; background: radial-gradient(circle, rgba(239,6,15,0.1), transparent 70%); animation: bb-drift-2 13s ease-in-out infinite alternate; }
+
+  .bg-dots {
+    position: absolute;
+    top: clamp(28px, 4.4vh, 50px);
+    right: clamp(40px, 5vw, 90px);
+    width: clamp(100px, 11vw, 160px);
+    height: clamp(90px, 11vh, 140px);
+    background-image: radial-gradient(circle, rgba(0,38,62,0.12) 1.8px, transparent 1.8px);
+    background-size: 20px 20px;
+    z-index: 0;
+    animation: bb-drift-2 20s ease-in-out infinite alternate;
+  }
+
+  .panel-navy {
+    position: relative;
+    width: 46vw;
+    flex-shrink: 0;
+    background:
+      linear-gradient(160deg, rgba(239,6,15,0.4) 0%, transparent 42%),
+      linear-gradient(205deg, rgba(241,128,41,0.35) 0%, transparent 48%),
+      linear-gradient(155deg, var(--navy) 0%, var(--navy-dark) 100%);
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
+    padding: clamp(40px, 6vh, 70px) clamp(72px, 9vw, 150px) clamp(40px, 6vh, 70px) clamp(30px, 4vw, 64px);
+    box-sizing: border-box;
+    animation: bb-fadeUp 0.8s ease-out both;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .panel-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(180deg, var(--blue), var(--red), var(--orange));
+    clip-path: polygon(calc(100% - 6px) 0, 100% 0, 82% 100%, calc(82% - 6px) 100%);
+    z-index: 2;
+  }
+
+  .panel-aurora { position: absolute; border-radius: 50%; filter: blur(50px); z-index: 0; }
+  .panel-aurora--1 { width: 46vh; height: 46vh; top: -16vh; right: -18vh; background: radial-gradient(circle, var(--violet), transparent 70%); opacity: 0.6; animation: bb-drift 15s ease-in-out infinite alternate; }
+  .panel-aurora--2 { width: 32vh; height: 32vh; bottom: 8vh; right: -12vh; background: radial-gradient(circle, var(--orange), transparent 70%); opacity: 0.4; animation: bb-drift-2 18s ease-in-out infinite alternate; }
+  .panel-aurora--3 { width: 26vh; height: 26vh; top: 30vh; left: -10vh; background: radial-gradient(circle, var(--red), transparent 70%); opacity: 0.3; animation: bb-drift 12s ease-in-out infinite alternate-reverse; }
+
+  .dot-grid {
+    position: absolute;
+    top: clamp(20px, 3vh, 36px);
+    left: clamp(24px, 3vw, 46px);
+    width: clamp(100px, 11vw, 150px);
+    height: clamp(100px, 13vh, 150px);
+    background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1.8px, transparent 1.8px);
+    background-size: 17px 17px;
+    animation: bb-drift 21s ease-in-out infinite alternate;
+  }
+
+  .ring-deco { position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
+  .ring-deco--1 { width: 40vh; height: 40vh; bottom: -18vh; left: -8vh; animation: bb-breathe 13s ease-in-out infinite; }
+  .ring-deco--2 { width: 26vh; height: 26vh; bottom: -10vh; left: -2vh; border-color: rgba(255,255,255,0.14); animation: bb-breathe 10s ease-in-out infinite; animation-delay: -3s; }
+
+  .brand-logo {
+    position: absolute;
+    top: clamp(28px, 4.4vh, 50px);
+    right: clamp(30px, 4.2vw, 64px);
+    height: clamp(50px, 7.2vh, 78px);
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    z-index: 3;
+  }
+
+  .portrait {
+    position: relative;
+    z-index: 1;
+    margin-right: clamp(6px, 1vw, 16px);
+    width: clamp(106px, 14vh, 156px);
+    height: clamp(106px, 14vh, 156px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--red) 55%, var(--orange) 100%);
+    border: 3px solid rgba(255,255,255,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 4.6vh, 50px);
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .name {
+    position: relative;
+    z-index: 1;
+    margin-top: clamp(22px, 3.4vh, 34px);
+    margin-right: clamp(16px, 2.2vw, 32px);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5.2vh, 54px);
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+
+  .rating-row { position: relative; z-index: 1; margin-top: clamp(14px, 2vh, 20px); margin-right: clamp(28px, 3.6vw, 50px); display: flex; align-items: center; justify-content: flex-end; gap: 14px; flex-wrap: wrap; }
+  .stars { font-size: clamp(24px, 3.4vh, 34px); letter-spacing: clamp(3px, 0.6vh, 6px); color: var(--gold); }
+  .score-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 999px;
+    padding: clamp(6px, 1vh, 9px) clamp(15px, 1.6vw, 19px);
+  }
+  .score-num { font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(21px, 2.9vh, 27px); color: var(--gold); letter-spacing: -0.4px; }
+  .score-suffix { font-size: clamp(12px, 1.6vh, 15px); font-weight: 600; color: rgba(255,255,255,0.6); }
+
+  .source-label { position: relative; z-index: 1; margin-top: clamp(12px, 1.8vh, 18px); margin-right: clamp(40px, 5vw, 68px); font-size: clamp(14px, 1.8vh, 17px); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+
+  .content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(40px, 6vh, 70px) clamp(48px, 6vw, 110px) clamp(36px, 5vh, 60px) clamp(36px, 4vw, 70px);
+    animation: bb-fadeUp 1s ease-out 0.1s both;
+  }
+
+  .content-main {
+    margin: auto 0;
+    transform: translateY(clamp(28px, 5vh, 60px));
+  }
+
+  .quote-mark {
+    position: absolute;
+    top: clamp(-2vh, 2vh, 6vh);
+    left: clamp(20px, 3vw, 40px);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: clamp(180px, 28vh, 340px);
+    color: var(--navy);
+    opacity: 0.06;
+    line-height: 1;
+    z-index: 0;
+    user-select: none;
+    animation: bb-pulse 8s ease-in-out infinite;
+  }
+
+  .content-accent {
+    width: 56px;
+    height: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--red), var(--orange));
+    position: relative;
+    z-index: 1;
+    margin-bottom: clamp(18px, 2.6vh, 26px);
+  }
+
+  .g-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    background: rgba(0,38,62,0.06);
+    border: 1px solid rgba(0,38,62,0.14);
+    border-radius: 999px;
+    padding: clamp(5px, 0.8vh, 7px) clamp(18px, 1.8vw, 22px) clamp(5px, 0.8vh, 7px) clamp(5px, 0.8vh, 7px);
+    margin-bottom: clamp(22px, 3.4vh, 32px);
+    position: relative;
+    z-index: 1;
+  }
+  .g-badge-icon {
+    width: clamp(28px, 3.8vh, 36px);
+    height: clamp(28px, 3.8vh, 36px);
+    border-radius: 999px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,38,62,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .g-badge-icon svg { width: 60%; height: 60%; }
+  .g-badge-label { font-size: clamp(15px, 2vh, 19px); font-weight: 600; color: var(--navy); }
+
+  .quote {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(38px, 5.8vh, 60px);
+    line-height: 1.28;
+    font-weight: 600;
+    color: var(--ink);
+    max-width: 22ch;
+    letter-spacing: -0.4px;
+  }
+
+  .contact-row {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-top: clamp(24px, 3.4vh, 34px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(10px, 1.2vw, 14px);
+  }
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: clamp(7px, 1.1vh, 10px) clamp(16px, 1.8vw, 20px) clamp(7px, 1.1vh, 10px) clamp(7px, 1.1vh, 10px);
+    box-shadow: 0 4px 14px rgba(0,38,62,0.06);
+  }
+  .contact-pill .icon-circle {
+    width: clamp(30px, 3.8vh, 36px);
+    height: clamp(30px, 3.8vh, 36px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-pill .icon-circle svg { width: 52%; height: 52%; }
+  .contact-pill .icon-circle { background: linear-gradient(135deg, var(--blue), var(--red) 55%, var(--orange) 100%); }
+  .contact-pill span { font-size: clamp(14px, 1.8vh, 17px); font-weight: 700; color: var(--navy); }
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+<main class="scene">
+  <div class="aurora-bg aurora-bg--1"></div>
+  <div class="aurora-bg aurora-bg--2"></div>
+  <div class="aurora-bg aurora-bg--3"></div>
+  <div class="bg-dots"></div>
+
+  <div class="panel-navy">
+    <div class="panel-aurora panel-aurora--1"></div>
+    <div class="panel-aurora panel-aurora--2"></div>
+    <div class="panel-aurora panel-aurora--3"></div>
+    <div class="ring-deco ring-deco--1"></div>
+    <div class="ring-deco ring-deco--2"></div>
+    <div class="dot-grid"></div>
+    <div class="panel-edge"></div>
+    <img class="brand-logo" src="../../assets/img/NTV_logo_white_horz_.png" alt="NTV 360" />
+    <div class="portrait">SJ</div>
+    <div class="name">Sarah Johnson</div>
+    <div class="rating-row">
+      <span class="stars">&starf;&starf;&starf;&starf;&starf;</span>
+      <span class="score-chip"><span class="score-num">5.0</span><span class="score-suffix">/ 5</span></span>
+    </div>
+    <div class="source-label">Verified Google Review</div>
+  </div>
+
+  <div class="content">
+    <div class="quote-mark">&ldquo;</div>
+    <div class="content-main">
+      <div class="content-accent"></div>
+      <div class="g-badge">
+        <div class="g-badge-icon">
+          <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+        </div>
+        <div class="g-badge-label">Client Review</div>
+      </div>
+      <p class="quote">&ldquo;Absolutely wonderful experience! The service was exceptional and the atmosphere was perfect. Highly recommend to anyone looking for quality.&rdquo;</p>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-pill contact-pill--address">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 8 12 8 12s8-6.6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg></div>
+        <span>123 Main Street, City, State 12345</span>
+      </div>
+      <div class="contact-pill contact-pill--phone">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.4 6.4l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.5 0 1 .4 1 1V20c0 .5-.5 1-1 1C10.5 21 3 13.5 3 4c0-.5.4-1 1-1h3.5c.6 0 1 .5 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1l-2.3 2.3Z"/></svg></div>
+        <span>(555) 123-4567</span>
+      </div>
+      <div class="contact-pill contact-pill--web">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.9 9h-3.2c-.1-2-.6-3.8-1.3-5.3A8 8 0 0 1 19.9 11ZM12 4c.9 1.3 1.6 3.4 1.7 7h-3.4c.1-3.6.8-5.7 1.7-7Zm-2.4.7C8.9 6.2 8.4 8 8.3 10H5.1a8 8 0 0 1 4.5-5.3ZM5.1 13h3.2c.1 2 .6 3.8 1.3 5.3A8 8 0 0 1 5.1 13Zm4.9 6.6c-.9-1.3-1.6-3.4-1.7-7h3.4c-.1 3.6-.8 5.7-1.7 7Zm2.4-.7c.7-1.5 1.2-3.3 1.3-5.3h3.2a8 8 0 0 1-4.5 5.3Z"/></svg></div>
+        <span>www.yourbusiness.com</span>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>

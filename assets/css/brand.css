@@ -1,0 +1,15 @@
+/* NTV 360 brand tokens — from NTV_Brand Guidelines.pdf */
+:root {
+  --ntv-navy: #00263e;
+  --ntv-violet: #a00558;
+  --ntv-red: #ef060f;
+  --ntv-orange: #f18029;
+
+  --ntv-black: #231f20;
+  --ntv-gray: #898c8d;
+  --ntv-gray-light: #cccccc;
+  --ntv-white: #fdfdfd;
+
+  --ntv-gradient: linear-gradient(45deg, var(--ntv-violet) 0%, var(--ntv-red) 50%, var(--ntv-orange) 100%);
+  --ntv-font: "Plus Jakarta Sans", sans-serif;
+}
