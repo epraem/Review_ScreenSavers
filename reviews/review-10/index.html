@@ -219,6 +219,7 @@
     height: clamp(42px, 5.4vh, 52px);
     border-radius: 50%;
     flex-shrink: 0;
+    overflow: hidden;
     background: linear-gradient(135deg, var(--violet), var(--red));
     display: flex;
     align-items: center;
@@ -228,6 +229,7 @@
     font-size: clamp(15px, 1.9vh, 18px);
     color: #fff;
   }
+  .avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
   .quote-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(17px, 2.2vh, 22px); color: rgba(255,255,255,0.85); }
   .quote-sub { margin-top: 2px; font-size: clamp(13px, 1.7vh, 16px); font-weight: 500; color: rgba(255,255,255,0.5); }
 
@@ -307,7 +309,7 @@
       <div class="quote-glow"></div>
       <p class="quote">&ldquo;Absolutely wonderful experience! The service was exceptional and the atmosphere was perfect. Highly recommend to anyone looking for quality.&rdquo;</p>
       <div class="reviewer-mini">
-        <div class="avatar-sm">SJ</div>
+        <div class="avatar-sm"><img src="../../assets/img/person.jpg" alt="Sarah Johnson" /></div>
         <div>
           <div class="quote-name">Sarah Johnson</div>
           <div class="quote-sub">Verified Google review</div>

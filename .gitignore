@@ -1,0 +1,6 @@
+# Reference/design-tool artifacts, not part of the deployed site
+.thumbnail
+Contact & Review.dc.html
+support.js
+uploads/
+layout-redesign-with-dark-and-light-modes/

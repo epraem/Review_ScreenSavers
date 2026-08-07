@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Review Billboard — Contact & Review (Dark)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { overflow: hidden; font-family: 'Archivo', 'Segoe UI', Arial, sans-serif; }
+  .back-link { position: fixed; top: 16px; left: 16px; z-index: 100; color: #fff; opacity: 0.55; text-decoration: none; font-size: 14px; font-weight: 600; }
+  .back-link:hover { opacity: 1; }
+
+  .scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #0A0C14;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .top {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: clamp(20px, 3vh, 36px) clamp(40px, 5.6vw, 120px);
+    background:
+      radial-gradient(60vw 46vh at 12% -10%, rgba(255,106,0,.16), transparent 60%),
+      radial-gradient(46vw 42vh at 92% 10%, rgba(214,31,105,.14), transparent 62%),
+      #0A0C14;
+  }
+
+  .top::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+  }
+
+  .top-logo-row { position: relative; display: flex; align-items: center; justify-content: flex-end; }
+  .top-logo { height: clamp(38px, 6vh, 64px); width: auto; }
+
+  .hero-row {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: clamp(16px, 2vw, 24px);
+    flex-wrap: wrap;
+  }
+
+  .hero-title { margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(40px, 6.8vh, 76px); line-height: 1.05; color: #F4F1EC; letter-spacing: -0.01em; }
+  .hero-title em { font-style: italic; color: #FF8A2B; }
+
+  .cards-row {
+    position: relative;
+    margin-top: clamp(24px, 4.5vh, 60px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(18px, 2.3vw, 33px);
+  }
+
+  .info-card {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(22px, 2.9vh, 37px) clamp(28px, 3vw, 43px) clamp(24px, 3.2vh, 39px);
+    border-radius: clamp(12px, 1.6vh, 18px);
+    background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+    border: 1px solid rgba(255,255,255,.1);
+  }
+  .info-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .info-card--1::before { background: linear-gradient(90deg, #FFB020, #FF3D2E); }
+  .info-card--2::before { background: linear-gradient(90deg, #FF6A00, #D61F69); }
+  .info-card--3::before { background: linear-gradient(90deg, #FFB020, #FF6A00); }
+
+  .info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(65px, 9vh, 88px);
+    height: clamp(65px, 9vh, 88px);
+    border-radius: clamp(14px, 2vh, 21px);
+  }
+  .info-icon svg { width: 46%; height: 46%; }
+  .info-card--1 .info-icon { background: rgba(255,106,0,.14); border: 1px solid rgba(255,138,0,.3); color: #FF8A2B; }
+  .info-card--2 .info-icon { background: rgba(214,31,105,.16); border: 1px solid rgba(214,31,105,.34); color: #FF5C8A; }
+  .info-card--3 .info-icon { background: rgba(255,176,32,.14); border: 1px solid rgba(255,176,32,.32); color: #FFB020; }
+
+  .info-label { margin-top: clamp(20px, 3.1vh, 36px); font-size: clamp(16px, 2.1vh, 20px); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(244,241,236,.42); }
+  .info-value { margin-top: clamp(10px, 1.6vh, 18px); font-size: clamp(24px, 3.4vh, 35px); font-weight: 600; line-height: 1.35; color: #F7F5F1; letter-spacing: -0.01em; }
+
+  .bottom {
+    flex: 0 0 clamp(250px, 31vh, 380px);
+    padding: 0 clamp(40px, 5.6vw, 120px);
+    background: #12141F;
+    border-top: 1px solid rgba(255,255,255,.07);
+    display: flex;
+    align-items: center;
+    gap: clamp(32px, 4vw, 50px);
+  }
+
+  .reviewer-avatar {
+    flex: none;
+    width: clamp(90px, 12.5vh, 125px);
+    height: clamp(90px, 12.5vh, 125px);
+    border-radius: 999px;
+    overflow: hidden;
+    background: linear-gradient(150deg, #FF8A2B, #D61F69);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: clamp(30px, 4.5vh, 43px);
+    color: #0A0C14;
+  }
+  .reviewer-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  .reviewer-body { flex: 1; min-width: 0; }
+  .reviewer-top { display: flex; align-items: center; gap: clamp(13px, 1.6vw, 20px); flex-wrap: wrap; }
+  .reviewer-stars { font-size: clamp(24px, 3.3vh, 30px); letter-spacing: .24em; color: #FFB020; }
+  .reviewer-name { font-size: clamp(21px, 2.9vh, 26px); font-weight: 600; color: rgba(244,241,236,.62); }
+
+  .google-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    padding: 9px 20px 9px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.05);
+  }
+  .google-chip svg { width: 22px; height: 22px; }
+  .google-chip span { font-size: clamp(15px, 1.9vh, 19px); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,241,236,.55); }
+
+  .reviewer-quote { margin: clamp(18px, 2.8vh, 25px) 0 0; max-width: 58vw; font-family: 'Archivo', sans-serif; font-weight: 500; font-size: clamp(30px, 4.6vh, 43px); line-height: 1.4; color: #EFECE6; letter-spacing: -0.005em; }
+
+  .reviewer-score { flex: none; align-self: center; text-align: right; }
+  .score-num { font-weight: 700; font-size: clamp(43px, 6.3vh, 60px); color: #F7F5F1; }
+  .score-caption { margin-top: 9px; font-size: clamp(16px, 2vh, 20px); font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(244,241,236,.38); }
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+<main class="scene">
+  <div class="top">
+    <div class="top-logo-row">
+      <img class="top-logo" src="../../assets/img/NTV_logo_white_horz_.png" alt="NTV 360" />
+    </div>
+
+    <div class="hero-row">
+      <h1 class="hero-title">Come see us,<br><em>call, or visit online.</em></h1>
+    </div>
+
+    <div class="cards-row">
+      <div class="info-card info-card--1">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10.5c0 5.5-8 12-8 12s-8-6.5-8-12a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10.3" r="2.8"></circle></svg></div>
+        <div class="info-label">Visit us</div>
+        <div class="info-value">123 Main Street<br>City, State 12345</div>
+      </div>
+
+      <div class="info-card info-card--2">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.8 17.8 0 0 1-7.8-2.8 17.5 17.5 0 0 1-5.4-5.4A17.8 17.8 0 0 1 3.5 5.2a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.6c.1 1 .35 2 .7 2.9a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14.4 14.4 0 0 0 5.4 5.4l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.93.35 1.9.6 2.9.7a1.8 1.8 0 0 1 1.6 1.8Z"></path></svg></div>
+        <div class="info-label">Call us</div>
+        <div class="info-value">(555) 123-4567</div>
+      </div>
+
+      <div class="info-card info-card--3">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"></path></svg></div>
+        <div class="info-label">Online</div>
+        <div class="info-value">yourbusiness.com</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="reviewer-avatar"><img src="../../assets/img/person1.jpg" alt="Sarah Johnson" /></div>
+    <div class="reviewer-body">
+      <div class="reviewer-top">
+        <span class="reviewer-stars">&starf;&starf;&starf;&starf;&starf;</span>
+        <span class="reviewer-name">Sarah Johnson</span>
+        <span class="google-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(244,241,236,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.2-6.9"></path><path d="M21 6.2V12h-5.6"></path></svg>
+          <span>via Google Business Profile</span>
+        </span>
+      </div>
+      <p class="reviewer-quote">&ldquo;Absolutely wonderful experience. The service was exceptional and the atmosphere was perfect.&rdquo;</p>
+    </div>
+    <div class="reviewer-score">
+      <div class="score-num">4.9</div>
+      <div class="score-caption">312 reviews</div>
+    </div>
+  </div>
+</main>
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>

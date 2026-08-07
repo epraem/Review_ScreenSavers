@@ -92,29 +92,15 @@
   }
 
   .avatar svg { width: 46%; height: 46%; fill: rgba(255,255,255,0.6); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
   .badge {
-    background: #fff;
-    border-radius: clamp(8px, 1.1vh, 12px);
-    padding: clamp(10px, 1.5vh, 16px) clamp(18px, 1.8vw, 34px);
     display: flex;
     align-items: center;
     gap: clamp(6px, 0.6vw, 12px);
   }
 
-  .badge-dot {
-    width: clamp(18px, 3vh, 32px);
-    height: clamp(18px, 3vh, 32px);
-    border-radius: 50%;
-    background: linear-gradient(135deg,#2563eb,#1e40af);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .badge-dot span { width: 46%; height: 46%; border-radius: 50%; border: 4px solid #fff; }
-  .badge-label { font-size: clamp(14px, 2.6vh, 28px); font-weight: 800; color: #0a1a4a; letter-spacing: 1px; }
+  .badge-logo { height: clamp(25px, 4.2vh, 45px); width: auto; }
 
   .footer {
     position: absolute;
@@ -151,11 +137,10 @@
 
     <div class="photo-col">
       <div class="avatar">
-        <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5Z"/></svg>
+        <img src="../../assets/img/person1.jpg" alt="Sarah Johnson" />
       </div>
       <div class="badge">
-        <div class="badge-dot"><span></span></div>
-        <div class="badge-label">LOGOIPSUM</div>
+        <img class="badge-logo" src="../../assets/img/NTV_logo_white_horz_.png" alt="NTV 360" />
       </div>
     </div>
   </div>

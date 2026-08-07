@@ -143,6 +143,7 @@
     height: clamp(76px, 9.5vh, 100px);
     border-radius: 50%;
     flex-shrink: 0;
+    overflow: hidden;
     background: linear-gradient(135deg, var(--teal), var(--coral));
     display: flex;
     align-items: center;
@@ -153,6 +154,7 @@
     color: #fff;
     letter-spacing: 0.5px;
   }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
   .reviewer-name { font-weight: 700; font-size: clamp(24px, 3.3vh, 33px); color: var(--ink); }
   .reviewer-sub { margin-top: 4px; font-size: clamp(16px, 2.1vh, 20px); font-weight: 500; color: var(--muted); }
@@ -275,7 +277,7 @@
       </div>
       <p class="quote">&ldquo;Absolutely wonderful experience! The service was exceptional and the atmosphere was perfect. Highly recommend to anyone looking for quality.&rdquo;</p>
       <div class="reviewer-row">
-        <div class="avatar">SJ</div>
+        <div class="avatar"><img src="../../assets/img/person1.jpg" alt="Sarah Johnson" /></div>
         <div>
           <div class="reviewer-name">Sarah Johnson</div>
           <div class="reviewer-sub">Verified Google review</div>
