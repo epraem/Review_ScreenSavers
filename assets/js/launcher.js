@@ -12,7 +12,8 @@
   }
 
   templates.forEach(function (tpl, i) {
-    var href = "reviews/" + tpl.slug + "/index.html";
+    var previewHref = "reviews/" + tpl.slug + "/index.html";
+    var href = "viewer.html?design=" + encodeURIComponent(tpl.slug);
 
     var wrap = document.createElement("div");
     wrap.className = "menu__card-wrap";
@@ -29,7 +30,7 @@
       '<span class="menu__card-desc"></span>';
 
     var frame = card.querySelector("iframe");
-    frame.setAttribute("src", href);
+    frame.setAttribute("src", previewHref);
     frame.setAttribute("title", tpl.title + " preview");
     card.querySelector(".menu__card-label").textContent = tpl.title;
     card.querySelector(".menu__card-desc").textContent = tpl.desc;
@@ -40,7 +41,7 @@
     btn.className = "menu__card-source";
     btn.innerHTML = '<span class="menu__card-source-icon">&lt;/&gt;</span>Show Source Code';
     btn.addEventListener("click", function () {
-      if (typeof NTVShowSource === "function") NTVShowSource(href);
+      if (typeof NTVShowSource === "function") NTVShowSource(previewHref);
     });
 
     wrap.append(card, btn);

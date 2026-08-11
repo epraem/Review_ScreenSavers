@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NTV 360 — Screensaver Viewer</title>
+  <style>
+    /* A shell that holds one screensaver at a time. Previous/Next swap the
+       frame instead of navigating, so fullscreen survives moving through the
+       deck — a page load would drop it, and the browser will not re-enter
+       fullscreen without a fresh click. */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+    #deck-frame { display: block; width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body>
+  <iframe id="deck-frame" title="Screensaver preview" allow="fullscreen"></iframe>
+
+  <script src="assets/js/templates.js"></script>
+  <script src="assets/js/view-source.js"></script>
+  <script src="assets/js/deck-nav.js?v=fullscreen-icon-3"></script>
+</body>
+</html>
