@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Northline Dental — You Are Here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   Billboard Screensaver — Location · 1920 × 1080 signage
+   Giant address, live clock, storefront photo, rotating reviews.
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#0a0a0a}
+body{display:flex;align-items:center;justify-content:center;font-family:Manrope,system-ui,sans-serif}
+
+a{color:#1c1c1c;text-decoration:none}
+a:hover{color:#C0442B}
+
+.back-link{position:fixed;top:20px;left:24px;z-index:9999;color:#fff;mix-blend-mode:difference;opacity:.85;text-decoration:none;font-size:15px;font-weight:600;transition:opacity .2s}
+.back-link:hover{opacity:1}
+
+.stage{width:1920px;height:1080px;flex:none;background:#ffffff;color:#14161a;transform-origin:center center;display:flex;flex-direction:column;padding:64px 72px 56px;position:relative;overflow:hidden}
+.rev{position:absolute;inset:0;transition:opacity 700ms ease;opacity:0}
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+
+<div class="stage">
+
+  <div style="position:absolute;top:-260px;right:-220px;width:760px;height:760px;border-radius:50%;background:#f4f5f7"></div>
+
+  <div style="position:relative;display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:28px;border-bottom:2px solid #14161a">
+    <div style="display:flex;align-items:center;gap:20px">
+      <div style="width:54px;height:54px;border-radius:14px;background:#14161a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;font-weight:800;letter-spacing:-.02em">N</div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div style="font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1">Northline Dental Studio</div>
+        <div style="font-size:19px;font-weight:500;color:#6b7078;letter-spacing:.16em;text-transform:uppercase">Family &amp; Cosmetic Care</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:28px">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;background:#ecf7f0;color:#16764a;font-size:20px;font-weight:700">
+        <span style="width:10px;height:10px;border-radius:50%;background:#1ea45f;display:inline-block"></span>
+        Open now &middot; until 6:00 PM
+      </div>
+      <div id="clock" style="font-size:30px;font-weight:700;letter-spacing:-.02em;color:#14161a;min-width:150px;text-align:right"></div>
+    </div>
+  </div>
+
+  <div style="position:relative;flex:1;display:grid;grid-template-columns:1.12fr 1fr;gap:64px;padding-top:52px;min-height:0">
+
+    <div style="display:flex;flex-direction:column;min-height:0">
+      <div style="display:flex;align-items:center;gap:14px;font-size:21px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C0442B">
+        <span style="width:34px;height:2px;background:#C0442B;display:inline-block"></span>
+        You are here
+      </div>
+
+      <div style="font-size:128px;font-weight:800;letter-spacing:-.055em;line-height:.92;margin-top:26px">1420 Grand<br>Avenue</div>
+
+      <div style="font-size:46px;font-weight:600;letter-spacing:-.02em;color:#3d434c;margin-top:22px">Suite 200 &middot; Oak Park, IL 60302</div>
+
+      <div style="display:flex;gap:14px;margin-top:34px;flex-wrap:wrap">
+        <div style="padding:14px 24px;border-radius:999px;border:2px solid #e3e5e9;font-size:22px;font-weight:600;color:#3d434c">Corner of Grand &amp; Oak</div>
+        <div style="padding:14px 24px;border-radius:999px;border:2px solid #e3e5e9;font-size:22px;font-weight:600;color:#3d434c">Free parking in rear</div>
+        <div style="padding:14px 24px;border-radius:999px;border:2px solid #e3e5e9;font-size:22px;font-weight:600;color:#3d434c">2 min from Green Line</div>
+      </div>
+
+      <div style="flex:1"></div>
+
+      <div style="position:relative;height:300px;border-radius:24px;background:#f7f8fa;border:2px solid #e9ebef;padding:34px 38px;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:34px;height:34px;border-radius:50%;background:#ffffff;border:2px solid #e3e5e9;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#4285F4">G</div>
+            <div style="font-size:20px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#6b7078">Google Reviews</div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:10px">
+            <span style="font-size:30px;font-weight:800;letter-spacing:-.02em">4.9</span>
+            <span style="font-size:19px;font-weight:600;color:#6b7078">&middot; 312 reviews</span>
+          </div>
+        </div>
+
+        <div style="position:relative;margin-top:24px;height:168px">
+          <div class="rev" id="rev0">
+            <div style="font-size:26px;color:#F5B60D;letter-spacing:3px">★★★★★</div>
+            <div style="font-size:29px;font-weight:600;line-height:1.35;letter-spacing:-.01em;margin-top:12px;color:#1c1f24">&ldquo;Easiest dental visit I&rsquo;ve ever had. They took me in early, explained every step, and the whole place is spotless.&rdquo;</div>
+            <div style="font-size:21px;font-weight:700;color:#6b7078;margin-top:14px">Marisa T. &middot; 2 weeks ago</div>
+          </div>
+          <div class="rev" id="rev1">
+            <div style="font-size:26px;color:#F5B60D;letter-spacing:3px">★★★★★</div>
+            <div style="font-size:29px;font-weight:600;line-height:1.35;letter-spacing:-.01em;margin-top:12px;color:#1c1f24">&ldquo;Parking behind the building made it painless, and the front desk had my paperwork ready before I sat down.&rdquo;</div>
+            <div style="font-size:21px;font-weight:700;color:#6b7078;margin-top:14px">Devon R. &middot; 1 month ago</div>
+          </div>
+          <div class="rev" id="rev2">
+            <div style="font-size:26px;color:#F5B60D;letter-spacing:3px">★★★★★</div>
+            <div style="font-size:29px;font-weight:600;line-height:1.35;letter-spacing:-.01em;margin-top:12px;color:#1c1f24">&ldquo;Brought both kids in on a Saturday. Friendly, fast, and they actually called to follow up on Monday.&rdquo;</div>
+            <div style="font-size:21px;font-weight:700;color:#6b7078;margin-top:14px">Priya K. &middot; 3 months ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:28px;min-height:0">
+      <div style="position:relative;flex:1;border-radius:24px;overflow:hidden;background:#eef0f3">
+        <img src="../../assets/img/place.png" alt="Northline Dental Studio storefront" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div style="border-radius:24px;background:#14161a;color:#ffffff;padding:30px 32px">
+          <div style="font-size:18px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#9aa1ab">Call</div>
+          <div style="font-size:42px;font-weight:800;letter-spacing:-.03em;margin-top:10px">(708) 555&#8209;0142</div>
+        </div>
+        <div style="border-radius:24px;background:#C0442B;color:#ffffff;padding:30px 32px">
+          <div style="font-size:18px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#f6cfc6">Visit</div>
+          <div style="font-size:42px;font-weight:800;letter-spacing:-.03em;margin-top:10px">northline.com</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var s=document.querySelector('.stage');
+  function fit(){s.style.transform='scale('+Math.min(innerWidth/1920,innerHeight/1080)+')';}
+  addEventListener('resize',fit);fit();
+
+  var clockEl=document.getElementById('clock');
+  function tick(){
+    var d=new Date();
+    var h=d.getHours(), m=String(d.getMinutes()).padStart(2,'0');
+    var ap=h>=12?'PM':'AM';
+    h=h%12||12;
+    clockEl.textContent=h+':'+m+' '+ap;
+  }
+  tick();
+  setInterval(tick,10000);
+
+  var revs=[document.getElementById('rev0'),document.getElementById('rev1'),document.getElementById('rev2')];
+  var i=0;
+  function render(){ revs.forEach(function(el,k){ el.style.opacity = k===i ? 1 : 0; }); }
+  render();
+  setInterval(function(){ i=(i+1)%3; render(); },8000);
+})();
+</script>
+
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>
