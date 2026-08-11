@@ -46,8 +46,9 @@ body{display:flex;align-items:center;justify-content:center;
 
 /* ---------- SPLIT CTA ---------- */
 .split{flex:1;display:flex;min-height:0}
-.panel{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+.panel{flex:1;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:0 64px;text-align:center}
+.big{max-width:100%;overflow:hidden}
 .panel.call{background:linear-gradient(165deg,var(--sky) 0%,#0f6ec4 100%);color:#fff}
 .panel.web{background:var(--paper);color:var(--ink)}
 .panel.web:before{content:"";position:absolute;inset:0;opacity:.6;
@@ -131,7 +132,7 @@ body{display:flex;align-items:center;justify-content:center;
       <div class="ico"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg></div>
       <div class="label">Call us now</div>
       <!-- EDIT: phone -->
-      <div class="big" data-fit>(303)<br>555&#8209;0127</div>
+      <div class="big" data-fit>(303) 555&#8209;0127</div>
       <div class="note">A real person answers, day or night. Same-day callouts across Boulder County.</div>
       <div class="pill">Avg. response 42 min</div>
     </div>
