@@ -91,6 +91,10 @@ body{display:flex;align-items:center;justify-content:center;
 .f svg{width:26px;height:26px;fill:var(--lime)}
 .back-link{position:fixed;top:20px;left:24px;z-index:9999;color:#fff;mix-blend-mode:difference;opacity:.85;text-decoration:none;font-size:15px;font-weight:600;font-family:'Inter',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;transition:opacity .2s}
 .back-link:hover{opacity:1}
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .f { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -176,5 +180,6 @@ body{display:flex;align-items:center;justify-content:center;
 })();
 </script>
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>

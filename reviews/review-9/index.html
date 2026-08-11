@@ -248,6 +248,10 @@
 
   .contact-divider { position: relative; height: 1px; background: rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center; }
   .contact-divider .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .contact-item span { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -310,5 +314,6 @@
   </div>
 </main>
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>

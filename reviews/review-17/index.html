@@ -148,6 +148,10 @@
   .reviewer-score { flex: none; align-self: center; text-align: right; }
   .score-num { font-weight: 700; font-size: clamp(43px, 6.3vh, 60px); color: #F7F5F1; }
   .score-caption { margin-top: 9px; font-size: clamp(16px, 2vh, 20px); font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(244,241,236,.38); }
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .info-value { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -203,5 +207,6 @@
   </div>
 </main>
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>

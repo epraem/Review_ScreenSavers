@@ -121,6 +121,10 @@
 
   .footer span { font-size: clamp(14px, 2vh, 22px); font-weight: 600; color: #FDFDFD; }
   .footer .site { color: #F18029; font-weight: 700; }
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .footer span { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -165,5 +169,6 @@
   </div>
 </main>
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>

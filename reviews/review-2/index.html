@@ -195,6 +195,10 @@
   }
 
   .contact-item svg { width: clamp(16px, 2.4vh, 24px); height: clamp(16px, 2.4vh, 24px); flex-shrink: 0; }
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .contact-item { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -245,5 +249,6 @@
   </div>
 </main>
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>

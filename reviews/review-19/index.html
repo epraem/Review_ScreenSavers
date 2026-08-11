@@ -342,6 +342,10 @@
     .readout-row { justify-content: center; }
     .contact-card { width: 100%; max-width: 420px; }
   }
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .contact-text-value { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -427,5 +431,6 @@
 </main>
 
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>

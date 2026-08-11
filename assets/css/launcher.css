@@ -17,7 +17,7 @@ body {
 }
 
 .menu {
-  width: min(920px, 92vw);
+  width: min(1440px, 94vw);
   text-align: center;
   padding: 40px 0;
 }
@@ -83,11 +83,21 @@ body {
   font-weight: 400;
 }
 
+/* Three previews per row on desktop, dropping to two then one as the window
+   narrows — the previews scale to whatever column width they land in. */
 .menu__grid {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+}
+
+@media (max-width: 1180px) {
+  .menu__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .menu__grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 .menu__card {
@@ -137,13 +147,32 @@ body {
   transform-origin: top left;
 }
 
+/* Deck position, matching the "07 / 32" counter in the screensaver's own
+   Previous/Next bar, so a card and the open screensaver read as the same item. */
+.menu__card-index {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(253, 253, 253, 0.16);
+  color: var(--ntv-gray-light);
+  font-family: 'Space Mono', 'JetBrains Mono', monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+}
+
 .menu__card-label {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .menu__card-desc {
-  font-size: 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
   color: var(--ntv-gray-light);
 }
 
@@ -153,6 +182,12 @@ body {
 .menu__card-wrap {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+/* Cards stretch to the tallest in the row so the source buttons line up. */
+.menu__card-wrap .menu__card {
+  flex: 1;
 }
 
 .menu__card-source {

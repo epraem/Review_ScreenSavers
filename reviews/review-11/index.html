@@ -282,6 +282,10 @@
   .contact-pill--phone .icon-circle { background: var(--red); }
   .contact-pill--web .icon-circle { background: var(--orange); }
   .contact-pill span { font-size: clamp(14px, 1.8vh, 17px); font-weight: 700; color: var(--navy); }
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .contact-pill span { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -361,5 +365,6 @@
   </div>
 </main>
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>

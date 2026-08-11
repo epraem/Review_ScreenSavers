@@ -260,6 +260,10 @@
   }
   .footer-item .icon-chip svg { width: 55%; height: 55%; }
   .footer-item span { font-size: clamp(19px, 2.5vh, 25px); font-weight: 600; color: rgba(255,255,255,0.92); }
+
+  /* Contact values stay on one line — a phone number or web address
+     that breaks across lines is unreadable from across a room. */
+  .footer-item span { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -334,5 +338,6 @@
   </div>
 </main>
 <script src="../../assets/js/view-source.js"></script>
+<script src="../../assets/js/deck-nav.js"></script>
 </body>
 </html>
