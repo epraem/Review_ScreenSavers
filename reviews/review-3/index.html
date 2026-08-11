@@ -2,164 +2,217 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Review Billboard — Split Panel</title>
+<title>Review Billboard — NTV 360</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
-  body { overflow: hidden; font-family: 'Segoe UI', Arial, sans-serif; }
-  .back-link { position: fixed; top: 16px; left: 16px; z-index: 100; color: #fff; opacity: 0.55; text-decoration: none; font-size: 14px; font-weight: 600; }
-  .back-link:hover { opacity: 1; }
+/* ============================================================
+   Review Billboard · 1920 × 1080 signage
+   Big rotating pull-quote beside a spinning-ring portrait card,
+   with a three-item contact footer and live rating ticker.
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#02061A}
+body{display:flex;align-items:center;justify-content:center;font-family:Archivo,system-ui,sans-serif}
 
-  @keyframes bb-twinkle { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.75; transform:scale(1.08); } }
-  @keyframes bb-slideL { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:translateX(0); } }
-  @keyframes bb-slideR { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+a{color:#8FB4FF;text-decoration:none}
+a:hover{color:#FFFFFF}
+@keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(60px,-40px,0) scale(1.12)}100%{transform:translate3d(0,0,0) scale(1)}}
+@keyframes drift2{0%{transform:translate3d(0,0,0) scale(1.05)}50%{transform:translate3d(-70px,50px,0) scale(1)}100%{transform:translate3d(0,0,0) scale(1.05)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popStar{0%{opacity:0;transform:scale(.4) rotate(-25deg)}70%{opacity:1;transform:scale(1.18) rotate(4deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes sweep{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+@keyframes tilePulse{0%,100%{box-shadow:0 0 0 0 rgba(96,143,255,0)}50%{box-shadow:0 0 0 10px rgba(96,143,255,.10)}}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.78)}}
+@keyframes ticker{0%{transform:translateY(0)}8%{transform:translateY(0)}33%{transform:translateY(-100%)}41%{transform:translateY(-100%)}66%{transform:translateY(-200%)}74%{transform:translateY(-200%)}100%{transform:translateY(-300%)}}
 
-  .scene {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #0a1a4a;
-    display: flex;
-  }
+.back-link{position:fixed;top:20px;left:24px;z-index:9999;color:#fff;mix-blend-mode:difference;opacity:.85;text-decoration:none;font-size:15px;font-weight:600;transition:opacity .2s}
+.back-link:hover{opacity:1}
 
-  .sidebar {
-    width: 33.3vw;
-    height: 100%;
-    background: linear-gradient(160deg,#1e40af,#0a1a4a);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(24px, 5.6vh, 60px);
-    box-sizing: border-box;
-    animation: bb-slideL 0.9s ease-out both;
-  }
-
-  .badge {
-    display: flex;
-    align-items: center;
-    gap: clamp(6px, 0.6vw, 12px);
-  }
-
-  .badge-logo { height: clamp(28px, 4.7vh, 51px); width: auto; }
-
-  .avatar {
-    margin-top: clamp(28px, 4.8vh, 52px);
-    width: clamp(110px, 20.4vh, 220px);
-    height: clamp(110px, 20.4vh, 220px);
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid rgba(255,255,255,0.4);
-    background: #22306b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .avatar svg { width: 52%; height: 52%; fill: rgba(255,255,255,0.7); }
-  .avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-  .name { margin-top: clamp(20px, 4.1vh, 44px); font-size: clamp(22px, 3.7vh, 40px); font-weight: 700; color: #fff; }
-  .stars-row {
-    margin-top: clamp(10px, 1.7vh, 18px);
-    font-size: clamp(22px, 3.7vh, 40px);
-    letter-spacing: clamp(2px, 0.46vh, 5px);
-    color: #FFB800;
-    animation: bb-twinkle 2.4s ease-in-out 0.9s infinite;
-  }
-
-  .gmb-chip {
-    margin-top: clamp(20px, 4.1vh, 44px);
-    display: flex;
-    align-items: center;
-    gap: clamp(8px, 1.3vh, 14px);
-    background: rgba(255,255,255,0.1);
-    padding: clamp(8px, 1.3vh, 14px) clamp(14px, 1.4vw, 26px);
-    border-radius: clamp(6px, 1.1vh, 12px);
-  }
-
-  .gmb-chip-icon {
-    width: clamp(18px, 3vh, 32px);
-    height: clamp(18px, 3vh, 32px);
-    border-radius: 6px;
-    background: #4285F4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: 800;
-    font-size: clamp(11px, 1.7vh, 18px);
-    flex-shrink: 0;
-  }
-
-  .gmb-chip-label { color: #fff; font-size: clamp(13px, 2vh, 22px); font-weight: 600; }
-
-  .quote-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: clamp(60px, 11.1vh, 120px) clamp(40px, 4.7vw, 90px) clamp(80px, 13.9vh, 150px);
-    box-sizing: border-box;
-    animation: bb-slideR 0.9s ease-out both;
-  }
-
-  .quote-wrap div {
-    font-size: clamp(26px, 5.4vh, 58px);
-    line-height: 1.4;
-    font-weight: 600;
-    color: #fff;
-    text-wrap: pretty;
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: clamp(16px, 3vh, 32px) clamp(28px, 3.3vw, 64px);
-    background: rgba(0,0,0,0.25);
-    box-sizing: border-box;
-  }
-
-  .footer span { color: #fff; font-size: clamp(14px, 2vh, 22px); font-weight: 600; }
+.stage{width:1920px;height:1080px;flex:none;position:relative;transform-origin:center center;background:#061033;overflow:hidden;display:flex;flex-direction:column}
 </style>
 </head>
 <body>
 <a class="back-link" href="../../index.html">&larr; Back to menu</a>
-<main class="scene">
-  <div class="sidebar">
-    <div class="badge">
-      <img class="badge-logo" src="../../assets/img/NTV_logo_white_horz_.png" alt="NTV 360" />
-    </div>
 
-    <div class="avatar">
-      <img src="../../assets/img/person.jpg" alt="Sarah Johnson" />
-    </div>
+<div class="stage">
 
-    <div class="name">Sarah Johnson</div>
-    <div class="stars-row">&starf;&starf;&starf;&starf;&starf;</div>
+  <div style="position:absolute;inset:0;background:radial-gradient(1200px 900px at 8% 12%, #1A47C9 0%, rgba(26,71,201,0) 62%), radial-gradient(900px 800px at 92% 88%, #0B1F6B 0%, rgba(11,31,107,0) 65%), linear-gradient(135deg,#071238 0%,#04091F 100%)"></div>
+  <div style="position:absolute;width:900px;height:900px;left:-180px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(56,110,255,.30) 0%,rgba(56,110,255,0) 68%);filter:blur(20px);animation:drift 26s ease-in-out infinite"></div>
+  <div style="position:absolute;width:760px;height:760px;right:-160px;bottom:60px;border-radius:50%;background:radial-gradient(circle,rgba(255,176,32,.13) 0%,rgba(255,176,32,0) 68%);filter:blur(24px);animation:drift2 34s ease-in-out infinite"></div>
+  <div style="position:absolute;inset:0;opacity:.35;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:120px 120px;mask-image:radial-gradient(120% 90% at 50% 40%,#000 20%,transparent 80%)"></div>
 
-    <div class="gmb-chip">
-      <div class="gmb-chip-icon">G</div>
-      <div class="gmb-chip-label">Google Reviews</div>
+  <header style="position:relative;display:flex;align-items:center;justify-content:space-between;padding:56px 96px 0 96px">
+    <div style="display:flex;align-items:flex-end;gap:8px">
+      <span style="font-size:58px;font-weight:900;letter-spacing:-.03em;color:#fff;line-height:1">NTV</span>
+      <span style="font-size:28px;font-weight:400;color:#8FB4FF;line-height:1.5;letter-spacing:.02em">360</span>
     </div>
+    <div style="display:flex;align-items:center;gap:18px;padding:14px 26px;border:1px solid rgba(143,180,255,.28);border-radius:999px;background:rgba(10,26,72,.5);backdrop-filter:blur(8px)">
+      <span style="width:12px;height:12px;border-radius:50%;background:#39E08A;box-shadow:0 0 16px #39E08A;animation:livePulse 1.8s ease-in-out infinite"></span>
+      <span style="font-size:22px;font-weight:600;letter-spacing:.22em;color:#C9DBFF;text-transform:uppercase">Verified guest reviews</span>
+    </div>
+  </header>
+
+  <main style="position:relative;flex:1;min-height:0;display:grid;grid-template-columns:1fr 560px;gap:96px;padding:40px 96px 32px 96px;align-items:center">
+    <section id="quoteSection" style="display:flex;flex-direction:column;gap:36px">
+      <div style="font-size:180px;line-height:.6;font-weight:900;color:rgba(143,180,255,.22);height:96px">&ldquo;</div>
+      <p id="quoteText" style="margin:0;font-size:74px;line-height:1.16;font-weight:600;color:#FFFFFF;letter-spacing:-.02em;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) both"></p>
+      <div style="display:flex;align-items:center;gap:20px">
+        <span style="height:2px;width:96px;background:linear-gradient(90deg,#FFB020,rgba(255,176,32,0))"></span>
+        <span id="contextText" style="font-size:26px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#9FB8EE"></span>
+      </div>
+    </section>
+
+    <aside id="cardSection" style="position:relative;display:flex;flex-direction:column;align-items:center;gap:26px;padding:56px 44px;border-radius:36px;background:linear-gradient(180deg,rgba(24,52,132,.72) 0%,rgba(8,20,58,.72) 100%);border:1px solid rgba(143,180,255,.22);box-shadow:0 40px 120px rgba(0,0,0,.45);backdrop-filter:blur(14px);animation:riseIn .9s cubic-bezier(.2,.7,.2,1) both">
+      <div style="position:relative;width:268px;height:268px;display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#FFB020,#4E8CFF,#39E08A,#FFB020);animation:spin 14s linear infinite;filter:blur(1px)"></div>
+        <div style="position:absolute;inset:7px;border-radius:50%;background:#0A1740"></div>
+        <img src="../../assets/img/person.jpg" alt="Reviewer" style="position:relative;width:242px;height:242px;border-radius:50%;object-fit:cover">
+      </div>
+      <div style="text-align:center;display:flex;flex-direction:column;gap:8px">
+        <div id="nameText" style="font-size:44px;font-weight:700;color:#fff;letter-spacing:-.01em"></div>
+        <div id="metaText" style="font-size:22px;font-weight:500;color:#8FB4FF;letter-spacing:.1em;text-transform:uppercase"></div>
+      </div>
+      <div id="starsRow" style="display:flex;gap:10px"></div>
+      <div style="display:flex;align-items:center;gap:14px;padding:16px 28px;border-radius:999px;background:#fff">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4h6.6c-.1 1.1-.9 2.8-2.5 3.9l-.1.2 3.6 2.8.3.1c2.3-2.1 3.6-5.3 3.6-8.8"/><path fill="#34A853" d="M12 24c3.3 0 6-1.1 8-3l-3.8-3c-1 .7-2.4 1.2-4.2 1.2a7.3 7.3 0 0 1-6.9-5l-.2.1-3.7 2.9-.1.2A12 12 0 0 0 12 24"/><path fill="#FBBC05" d="M5.1 14.3a7.4 7.4 0 0 1 0-4.6l-.1-.2-3.8-2.9-.1.1a12 12 0 0 0 0 10.6z"/><path fill="#EA4335" d="M12 4.7c2.1 0 3.6.9 4.4 1.7l3.2-3.2C17.9 1.3 15.3 0 12 0 7.3 0 3.2 2.7 1.2 6.6L5 9.7a7.3 7.3 0 0 1 7-5"/></svg>
+        <span style="font-size:24px;font-weight:700;color:#1A1A1A;letter-spacing:-.01em">Google Review</span>
+      </div>
+    </aside>
+  </main>
+
+  <div style="position:relative;height:4px;margin:0 96px;background:rgba(143,180,255,.14);border-radius:999px;overflow:hidden">
+    <div style="height:100%;width:100%;background:linear-gradient(90deg,#4E8CFF,#FFB020,rgba(255,176,32,0))"></div>
   </div>
 
-  <div class="quote-wrap">
-    <div>Absolutely wonderful experience! The service was exceptional and the atmosphere was perfect. Highly recommend to anyone looking for quality.</div>
-  </div>
+  <footer style="position:relative;height:220px;flex:none;background:linear-gradient(180deg,#040A20 0%,#020616 100%);border-top:1px solid rgba(143,180,255,.16);display:flex;align-items:center;justify-content:space-between;padding:0 72px;gap:40px;overflow:hidden">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;overflow:hidden">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(78,140,255,0),#4E8CFF,#FFB020,rgba(255,176,32,0));animation:sweep 5.5s linear infinite"></div>
+    </div>
 
-  <div class="footer">
-    <span>123 Main Street, City, State 12345</span>
-    <span>(555) 123-4567 &middot; www.yourbusiness.com</span>
-  </div>
-</main>
+    <div style="display:flex;align-items:center;gap:34px">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:70px;height:70px;flex:none;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,rgba(78,140,255,.22),rgba(78,140,255,.06));border:1px solid rgba(143,180,255,.26);animation:tilePulse 4s ease-in-out infinite">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8FB4FF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:16px;font-weight:600;letter-spacing:.18em;white-space:nowrap;text-transform:uppercase;color:#6C86C4">Visit us</span>
+          <span style="font-size:27px;font-weight:600;color:#EAF1FF;letter-spacing:-.01em;white-space:nowrap">123 Main Street, City, State 12345</span>
+        </div>
+      </div>
+
+      <div style="width:1px;height:78px;background:linear-gradient(180deg,rgba(143,180,255,0),rgba(143,180,255,.28),rgba(143,180,255,0))"></div>
+
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:70px;height:70px;flex:none;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,rgba(57,224,138,.20),rgba(57,224,138,.05));border:1px solid rgba(57,224,138,.28);animation:tilePulse 4s ease-in-out 1.3s infinite">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#5FE3A2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:16px;font-weight:600;letter-spacing:.18em;white-space:nowrap;text-transform:uppercase;color:#6C86C4">Call</span>
+          <span style="font-size:27px;font-weight:600;color:#EAF1FF;letter-spacing:-.01em;white-space:nowrap">(555) 123-4567</span>
+        </div>
+      </div>
+
+      <div style="width:1px;height:78px;background:linear-gradient(180deg,rgba(143,180,255,0),rgba(143,180,255,.28),rgba(143,180,255,0))"></div>
+
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:70px;height:70px;flex:none;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,rgba(255,176,32,.20),rgba(255,176,32,.05));border:1px solid rgba(255,176,32,.30);animation:tilePulse 4s ease-in-out 2.6s infinite">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FFC459" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:16px;font-weight:600;letter-spacing:.18em;white-space:nowrap;text-transform:uppercase;color:#6C86C4">Online</span>
+          <span style="font-size:27px;font-weight:600;color:#EAF1FF;letter-spacing:-.01em;white-space:nowrap">www.yourbusiness.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:22px;flex:none;padding:20px 30px;border-radius:24px;background:linear-gradient(150deg,rgba(255,176,32,.14),rgba(255,176,32,.03));border:1px solid rgba(255,176,32,.3)">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <span style="font-size:52px;font-weight:900;color:#FFB020;line-height:1;letter-spacing:-.02em">4.9</span>
+        <span style="font-size:15px;font-weight:600;letter-spacing:.16em;color:#C79A47;text-transform:uppercase">rating</span>
+      </div>
+      <div style="width:1px;height:64px;background:rgba(255,176,32,.28)"></div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span style="font-size:23px;font-weight:700;white-space:nowrap;color:#FFEBC7;letter-spacing:-.01em">482 verified reviews</span>
+        <div style="height:26px;overflow:hidden">
+          <div style="animation:ticker 16s ease-in-out infinite">
+            <div style="height:26px;font-size:18px;font-weight:500;white-space:nowrap;color:#B4C7EE">Sarah left a 5-star review</div>
+            <div style="height:26px;font-size:18px;font-weight:500;white-space:nowrap;color:#B4C7EE">Marcus left a 5-star review</div>
+            <div style="height:26px;font-size:18px;font-weight:500;white-space:nowrap;color:#B4C7EE">Elena left a 5-star review</div>
+            <div style="height:26px;font-size:18px;font-weight:500;white-space:nowrap;color:#B4C7EE">Sarah left a 5-star review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var stage=document.querySelector('.stage');
+  function fit(){stage.style.transform='scale('+Math.min(innerWidth/1920,innerHeight/1080)+')';}
+  addEventListener('resize',fit);fit();
+
+  var REVIEWS=[
+    {quote:"Absolutely wonderful experience. The service was exceptional and the atmosphere was perfect, highly recommend to anyone looking for quality.",name:"Sarah Johnson",meta:"Local Guide · March 2026",context:"Reviewed on Google",stars:5},
+    {quote:"Walked in on a whim and left planning my next visit. Every detail felt considered, and the team could not have been kinder.",name:"Marcus Lee",meta:"Regular · February 2026",context:"Reviewed on Google",stars:5},
+    {quote:"Ten years in this neighborhood and this is still the place I send friends to first. Consistent, warm, genuinely excellent.",name:"Elena Ruiz",meta:"Local Guide · January 2026",context:"Reviewed on Google",stars:5}
+  ];
+
+  var quoteText=document.getElementById('quoteText');
+  var contextText=document.getElementById('contextText');
+  var nameText=document.getElementById('nameText');
+  var metaText=document.getElementById('metaText');
+  var starsRow=document.getElementById('starsRow');
+  var quoteSection=document.getElementById('quoteSection');
+  var cardSection=document.getElementById('cardSection');
+  var accent='#FFB020';
+  var starPath='M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5L2.6 9.4l6.5-.9z';
+
+  function renderStars(count){
+    starsRow.innerHTML='';
+    for(var n=0;n<count;n++){
+      var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.setAttribute('width','40');
+      svg.setAttribute('height','40');
+      svg.setAttribute('viewBox','0 0 24 24');
+      svg.setAttribute('fill',accent);
+      svg.style.animation='popStar .55s cubic-bezier(.2,.8,.3,1.4) '+(0.25+n*0.09)+'s both';
+      svg.style.filter='drop-shadow(0 0 12px rgba(255,176,32,.45))';
+      var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d',starPath);
+      svg.appendChild(path);
+      starsRow.appendChild(svg);
+    }
+  }
+
+  function render(idx){
+    var r=REVIEWS[idx];
+    quoteText.textContent=r.quote;
+    contextText.textContent=r.context;
+    nameText.textContent=r.name;
+    metaText.textContent=r.meta;
+    renderStars(r.stars || 5);
+
+    [quoteText,cardSection].forEach(function(el){
+      el.style.animation='none';
+      void el.offsetWidth;
+      el.style.animation='riseIn .9s cubic-bezier(.2,.7,.2,1) both';
+    });
+  }
+
+  var i=0;
+  render(i);
+  setInterval(function(){
+    i=(i+1)%REVIEWS.length;
+    render(i);
+  },9000);
+})();
+</script>
+
 <script src="../../assets/js/view-source.js"></script>
 </body>
 </html>

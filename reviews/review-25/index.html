@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloom &amp; Co. — Location (V2-B)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   V2-B · LOCATION HERO · "Map Card"  ·  1920 × 1080 signage
+   Big address block left, live-looking map panel right.
+   EDIT BUSINESS DETAILS IN THE HTML BELOW (search: EDIT:)
+   ============================================================ */
+:root{
+  --blush:#fdf1f2;
+  --plum:#4a1d3f;
+  --plum2:#6b2a58;
+  --rose:#e0507e;
+  --gold:#c99a3c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#2a0f24}
+body{display:flex;align-items:center;justify-content:center;
+  font-family:'Inter',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.stage{width:1920px;height:1080px;position:relative;overflow:hidden;flex:0 0 auto;transform-origin:center center;
+  background:var(--blush);display:flex}
+
+/* ---------- LEFT: the address ---------- */
+.left{width:1120px;flex:0 0 auto;padding:64px 72px 0 96px;position:relative;display:flex;flex-direction:column}
+.left:before{content:"";position:absolute;left:-220px;bottom:-260px;width:680px;height:680px;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,80,126,.14),rgba(224,80,126,0) 70%)}
+.brand{display:flex;align-items:center;gap:16px;position:relative}
+.brand svg{width:60px;height:60px}
+.brand b{font-family:'Playfair Display',Georgia,serif;font-size:38px;font-weight:700;color:var(--plum);letter-spacing:-.01em}
+.brand i{display:block;font-style:normal;font-size:14px;letter-spacing:.36em;text-transform:uppercase;color:var(--rose);font-weight:700;margin-top:5px}
+
+.kicker{margin-top:62px;display:inline-flex;align-self:flex-start;align-items:center;gap:12px;
+  background:var(--plum);color:#ffe9f0;border-radius:999px;padding:13px 28px;
+  font-size:20px;font-weight:700;letter-spacing:.28em;text-transform:uppercase}
+
+.addrblock{margin-top:auto;margin-bottom:auto}
+.num{font-family:'Playfair Display',Georgia,serif;font-size:230px;font-weight:800;line-height:.86;color:var(--rose);
+  letter-spacing:-.04em}
+.street{font-family:'Playfair Display',Georgia,serif;font-size:112px;font-weight:700;line-height:1;color:var(--plum);
+  letter-spacing:-.025em;margin-top:6px;white-space:nowrap}
+.city{font-size:52px;font-weight:600;color:var(--plum2);margin-top:20px;letter-spacing:.005em;white-space:nowrap}
+
+.notes{margin-bottom:150px;display:flex;gap:46px}
+.note{display:flex;align-items:center;gap:14px;font-size:25px;font-weight:600;color:var(--plum2)}
+.note svg{width:32px;height:32px;fill:var(--gold);flex:0 0 auto}
+
+/* ---------- RIGHT: map panel ---------- */
+.right{flex:1;position:relative;background:linear-gradient(160deg,var(--plum2),var(--plum));overflow:hidden}
+.roads{position:absolute;inset:-8%;opacity:.5}
+.roads span{position:absolute;background:rgba(255,255,255,.13);border-radius:4px}
+.r1{left:0;right:0;top:22%;height:16px}
+.r2{left:0;right:0;top:62%;height:22px;background:rgba(255,255,255,.18)!important}
+.r3{top:0;bottom:0;left:34%;width:16px}
+.r4{top:0;bottom:0;left:72%;width:24px;background:rgba(255,255,255,.18)!important}
+.r5{left:-10%;right:-10%;top:40%;height:12px;transform:rotate(-22deg);transform-origin:center}
+.blocks{position:absolute;inset:0;opacity:.16;
+  background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+  background-size:96px 96px}
+.park{position:absolute;left:6%;top:70%;width:22%;height:22%;background:rgba(139,197,133,.28);border-radius:18px}
+.water{position:absolute;right:-6%;top:-8%;width:38%;height:34%;background:rgba(96,165,250,.22);border-radius:0 0 0 140px;transform:rotate(-8deg)}
+
+.marker{position:absolute;left:50%;top:47%;transform:translate(-50%,-100%);text-align:center}
+.marker .ring{position:absolute;left:50%;bottom:-26px;width:180px;height:180px;margin-left:-90px;border-radius:50%;
+  border:4px solid rgba(255,255,255,.45);animation:ripple 2.8s ease-out infinite}
+.marker .ring:nth-child(2){animation-delay:1.4s}
+@keyframes ripple{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+.marker svg{width:150px;height:150px;filter:drop-shadow(0 20px 34px rgba(0,0,0,.5));position:relative}
+.marker .lab{position:relative;margin-top:14px;display:inline-block;background:#fff;color:var(--plum);
+  padding:14px 26px;border-radius:14px;font-size:26px;font-weight:800;letter-spacing:.02em;
+  box-shadow:0 16px 40px rgba(0,0,0,.35);white-space:nowrap}
+
+/* review chip on map */
+.chip{position:absolute;left:50%;transform:translateX(-50%);bottom:172px;width:660px;
+  background:rgba(255,255,255,.96);border-radius:20px;padding:26px 30px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.chip .row{display:flex;align-items:center;gap:14px}
+.chip .av{width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#e0507e,#a4325f);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:21px;flex:0 0 auto}
+.chip .nm{font-size:23px;font-weight:700;color:#241a20}
+.chip .stars{display:flex;gap:4px;margin-top:4px}
+.chip .stars svg{width:22px;height:22px;fill:#f5a623}
+.chip .g{margin-left:auto;width:38px;height:38px;flex:0 0 auto}
+.chip p{margin-top:16px;font-size:24px;line-height:1.45;color:#3d2b35;font-weight:500}
+
+/* footer */
+.footer{position:absolute;left:0;right:0;bottom:0;height:104px;background:var(--plum);color:#ffe9f0;
+  display:flex;align-items:center;justify-content:space-between;padding:0 96px;z-index:3}
+.f{display:flex;align-items:center;gap:13px;font-size:28px;font-weight:600}
+.f svg{width:29px;height:29px;fill:var(--rose)}
+.back-link{position:fixed;top:20px;left:24px;z-index:9999;color:#fff;mix-blend-mode:difference;opacity:.85;text-decoration:none;font-size:15px;font-weight:600;font-family:'Inter',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;transition:opacity .2s}
+.back-link:hover{opacity:1}
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+<div class="stage">
+
+  <div class="left">
+    <!-- EDIT: brand -->
+    <div class="brand">
+      <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#fdf1f2" stroke="#e0507e" stroke-width="2.5"/><g fill="#e0507e"><ellipse cx="24" cy="16" rx="5" ry="7"/><ellipse cx="17" cy="21" rx="7" ry="5"/><ellipse cx="31" cy="21" rx="7" ry="5"/><ellipse cx="20" cy="28" rx="5.5" ry="6"/><ellipse cx="28" cy="28" rx="5.5" ry="6"/></g><circle cx="24" cy="22.5" r="4" fill="#c99a3c"/></svg>
+      <div><b>Bloom &amp; Co.</b><i>Florist &amp; Garden</i></div>
+    </div>
+
+    <div class="kicker">Come visit us</div>
+
+    <!-- EDIT: address -->
+    <div class="addrblock">
+      <div class="num">9</div>
+      <div class="street" data-fit>Marigold St.</div>
+      <div class="city" data-fit>Savannah, Georgia 31401</div>
+    </div>
+
+    <div class="notes">
+      <div class="note"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Beside Forsyth Park</div>
+      <div class="note"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.4V6h-2v7.6l5.2 3.1 1-1.7-4.2-2.6z"/></svg>Open daily 8AM &ndash; 7PM</div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="blocks"></div>
+    <div class="water"></div>
+    <div class="park"></div>
+    <div class="roads"><span class="r1"></span><span class="r2"></span><span class="r3"></span><span class="r4"></span><span class="r5"></span></div>
+
+    <div class="marker">
+      <span class="ring"></span><span class="ring"></span>
+      <svg viewBox="0 0 24 24" fill="#e0507e"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      <div class="lab">You&rsquo;ll find us here</div>
+    </div>
+
+    <div class="chip">
+      <div class="row">
+        <!-- EDIT: reviewer -->
+        <div class="av">HW</div>
+        <div>
+          <div class="nm">Hannah Whitfield</div>
+          <div class="stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+          </div>
+        </div>
+        <svg class="g" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+      </div>
+      <!-- EDIT: review text -->
+      <p>&ldquo;They put together the most beautiful arrangement for my mum&rsquo;s birthday with two hours&rsquo; notice. Genuinely lovely people.&rdquo;</p>
+    </div>
+  </div>
+
+  <!-- EDIT: contact strip -->
+  <div class="footer">
+    <div class="f"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>(912) 555-0164</div>
+    <div class="f" style="letter-spacing:.2em;font-size:22px;font-weight:700;color:rgba(255,233,240,.7)">RATED 5.0 ON GOOGLE &middot; 903 REVIEWS</div>
+    <div class="f"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.95a15.6 15.6 0 0 0-1.4-3.6A8.03 8.03 0 0 1 18.9 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a8.1 8.1 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26zm.84 2h2.95c.34 1.28.81 2.5 1.4 3.6A8.03 8.03 0 0 1 5.1 16zm2.95-8H5.1a8.03 8.03 0 0 1 4.35-3.6A15.6 15.6 0 0 0 8.05 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82A13.6 13.6 0 0 1 12 19.96zM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4zm.2 5.6c.59-1.1 1.06-2.32 1.4-3.6h2.95a8.03 8.03 0 0 1-4.35 3.6zM16.36 14a16.5 16.5 0 0 0 0-4h3.38a8.1 8.1 0 0 1 0 4h-3.38z"/></svg>bloomandco.shop</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var s=document.querySelector('.stage');
+  function fit(){s.style.transform='scale('+Math.min(innerWidth/1920,innerHeight/1080)+')';}
+  addEventListener('resize',fit);fit();
+
+  /* Auto-shrink long text so it never overflows the slide */
+  function fitW(el){var f=parseFloat(getComputedStyle(el).fontSize),g=140;
+    while(el.scrollWidth>el.clientWidth+1&&f>16&&g--){f-=2;el.style.fontSize=f+'px';}}
+  function fitH(el,max){var f=parseFloat(getComputedStyle(el).fontSize),g=140;
+    while(el.scrollHeight>max&&f>16&&g--){f-=2;el.style.fontSize=f+'px';}}
+  function run(){
+    document.querySelectorAll('[data-fit]').forEach(fitW);
+    document.querySelectorAll('[data-fitv]').forEach(function(el){fitH(el,parseFloat(el.dataset.fitv));});
+  }
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(run);}
+  setTimeout(run,1200);run();
+})();
+</script>
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>

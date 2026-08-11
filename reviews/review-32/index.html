@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northbay Dental Studio — Billboard (V4-C)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   V4-C · FULL BILLBOARD · "Northbay" · 1920 × 1080 signage
+   Bold blue domain header, address + amenities row, rotating review strip.
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#EEF3FB}
+body{display:flex;align-items:center;justify-content:center;
+  font-family:Sora,sans-serif;-webkit-font-smoothing:antialiased}
+.stage{width:1920px;height:1080px;flex:none;position:relative;overflow:hidden;transform-origin:center center;background:#FFFFFF;color:#0A1830;display:flex;flex-direction:column}
+
+a{color:#0B4FD1;text-decoration:none}
+a:hover{color:#0A3EA3}
+@keyframes nb-arrow{0%,100%{transform:translateX(0)}50%{transform:translateX(14px)}}
+@keyframes nb-scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+.back-link{position:fixed;top:20px;left:24px;z-index:9999;color:#fff;mix-blend-mode:difference;opacity:.85;text-decoration:none;font-size:15px;font-weight:600;transition:opacity .2s}
+.back-link:hover{opacity:1}
+
+.review-fade{transition:opacity .6s ease}
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+
+<div class="stage">
+
+  <div style="position:relative;background:#0B4FD1;color:#FFFFFF;padding:52px 88px 58px;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.5px, transparent 1.5px);background-size:36px 36px"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.9), rgba(255,255,255,0));width:40%;animation:nb-scan 5s linear infinite"></div>
+
+    <div style="position:relative;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:18px">
+        <div style="width:54px;height:54px;flex:none;border-radius:14px;background:#FFFFFF;display:flex;align-items:center;justify-content:center">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 3c2.2 0 3 1 4.6 1 2.3 0 3.9 1.7 3.9 4.4 0 4.4-2.7 12.6-5.2 12.6-1.4 0-1.9-1.9-3.3-1.9s-1.9 1.9-3.3 1.9C6.2 21 3.5 12.8 3.5 8.4 3.5 5.7 5.1 4 7.4 4 9 4 9.8 3 12 3z" fill="#0B4FD1"></path></svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="font-size:32px;font-weight:600;letter-spacing:-.01em">Northbay Dental Studio</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:.22em;text-transform:uppercase;color:#B9D0F7">Family &amp; cosmetic dentistry</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 28px;border:1.5px solid rgba(255,255,255,.35);border-radius:999px">
+        <div style="width:11px;height:11px;border-radius:50%;background:#7BE8A8"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:.2em;text-transform:uppercase">Accepting new patients</div>
+      </div>
+    </div>
+
+    <div style="position:relative;margin-top:44px;display:flex;align-items:baseline;gap:34px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:20px;letter-spacing:.28em;text-transform:uppercase;color:#B9D0F7;writing-mode:vertical-rl;transform:rotate(180deg);align-self:stretch">Book online</div>
+      <div style="font-size:158px;font-weight:700;line-height:.9;letter-spacing:-.045em">northbaydental<span style="color:#7BE8A8">.com</span></div>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;align-items:center;gap:56px;padding:0 88px;background:#FFFFFF;border-bottom:1.5px solid #E1E9F7;min-height:0">
+    <div style="display:flex;align-items:center;gap:22px;flex:none">
+      <svg width="86" height="46" viewBox="0 0 86 46" fill="none" style="animation:nb-arrow 2.6s ease-in-out infinite"><path d="M0 18h56V0l30 23-30 23V28H0z" fill="#0B4FD1"></path></svg>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 auto;min-width:0">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.26em;text-transform:uppercase;color:#5B6E8F">Suite 300 &middot; North elevator</div>
+      <div style="font-size:64px;font-weight:600;line-height:1.1;letter-spacing:-.025em">820 Marina Boulevard<br>Sausalito, CA 94965</div>
+    </div>
+    <div style="display:flex;gap:0;flex:none">
+      <div style="display:flex;flex-direction:column;gap:6px;padding:0 34px;border-left:1.5px solid #E1E9F7">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:.22em;text-transform:uppercase;color:#5B6E8F">Parking</div>
+        <div style="font-size:26px;font-weight:500">Free, validated</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:0 34px;border-left:1.5px solid #E1E9F7">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:.22em;text-transform:uppercase;color:#5B6E8F">Ferry</div>
+        <div style="font-size:26px;font-weight:500">4 min walk</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:0 0 0 34px;border-left:1.5px solid #E1E9F7">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:.22em;text-transform:uppercase;color:#5B6E8F">Call or text</div>
+        <div style="font-size:26px;font-weight:500">(415) 555-0192</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#F5F8FE;padding:38px 88px 44px;display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:center;gap:18px">
+      <div style="width:40px;height:40px;flex:none;border-radius:50%;background:#FFFFFF;border:1.5px solid #E1E9F7;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:700;color:#4285F4">G</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:17px;letter-spacing:.2em;text-transform:uppercase;color:#5B6E8F">Google reviews</div>
+      <div style="font-size:24px;font-weight:600">4.9</div>
+      <div style="font-size:22px;color:#F2A21C;letter-spacing:.06em">★★★★★</div>
+      <div style="font-size:20px;color:#5B6E8F">248 reviews</div>
+    </div>
+
+    <div class="review-fade" style="border-radius:18px;padding:32px 38px;background:#0B4FD1;border:1.5px solid #0B4FD1;display:flex;align-items:center;gap:40px">
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px;min-width:0">
+        <div data-stars style="font-size:24px;letter-spacing:.08em;color:#7BE8A8">★★★★★</div>
+        <div data-quote style="font-size:32px;line-height:1.34;color:#FFFFFF"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex:none;padding-left:40px;border-left:1.5px solid rgba(255,255,255,.25)">
+        <div data-initial style="width:52px;height:52px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;background:rgba(255,255,255,.18);color:#FFFFFF"></div>
+        <div style="display:flex;flex-direction:column;gap:3px">
+          <div data-name style="font-size:24px;font-weight:600;color:#FFFFFF"></div>
+          <div data-meta style="font-family:'IBM Plex Mono',monospace;font-size:16px;color:#B9D0F7"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var stage=document.querySelector('.stage');
+  function fit(){stage.style.transform='scale('+Math.min(innerWidth/1920,innerHeight/1080)+')';}
+  addEventListener('resize',fit);fit();
+
+  var REVIEWS=[
+    {name:"Hannah Delgado",meta:"Local Guide · 1 week ago",rating:5,quote:"Booked a cleaning on the site in two minutes and got a same-week slot. Bright, calm office right on the water."},
+    {name:"Marcus Fein",meta:"Sausalito · 3 weeks ago",rating:5,quote:"Garage parking is free and validated, which makes bringing both kids in on a Saturday actually painless."},
+    {name:"Aiko Brennan",meta:"Mill Valley · 2 months ago",rating:5,quote:"Walked over from the ferry on my lunch break. In, out, and back at my desk in under an hour."},
+    {name:"Owen Castellanos",meta:"Local Guide · 2 months ago",rating:4,quote:"Great hygienists and honest treatment plans. Take the north elevator to Suite 300, easy to miss the first time."},
+    {name:"Priya Raman",meta:"Tiburon · 3 months ago",rating:5,quote:"The online intake forms meant zero paperwork at the desk. Whole visit felt twenty minutes shorter."}
+  ];
+
+  var starsEl=document.querySelector('[data-stars]');
+  var quoteEl=document.querySelector('[data-quote]');
+  var initialEl=document.querySelector('[data-initial]');
+  var nameEl=document.querySelector('[data-name]');
+  var metaEl=document.querySelector('[data-meta]');
+  var panel=document.querySelector('.review-fade');
+  var rotateSeconds=8;
+  var i=0;
+
+  function render(){
+    var r=REVIEWS[i];
+    starsEl.textContent='★★★★★☆☆☆☆☆'.slice(5-r.rating,10-r.rating);
+    quoteEl.textContent='“'+r.quote+'”';
+    initialEl.textContent=r.name.charAt(0);
+    nameEl.textContent=r.name;
+    metaEl.textContent=r.meta;
+  }
+  render();
+
+  setInterval(function(){
+    panel.style.opacity=0;
+    setTimeout(function(){
+      i=(i+1)%REVIEWS.length;
+      render();
+      panel.style.opacity=1;
+    },600);
+  },rotateSeconds*1000);
+})();
+</script>
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>

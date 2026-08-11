@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northwind Auto Care — Location (V2-A)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   V2-A · LOCATION HERO · "Billboard"  ·  1920 × 1080 signage
+   The address is the loudest thing on screen.
+   EDIT BUSINESS DETAILS IN THE HTML BELOW (search: EDIT:)
+   ============================================================ */
+:root{
+  --deep:#062e30;
+  --deep2:#0a4145;
+  --amber:#ffb020;
+  --amber-soft:#ffd37a;
+  --paper:#f2f7f6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#041d1f}
+body{display:flex;align-items:center;justify-content:center;
+  font-family:'Inter',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.stage{width:1920px;height:1080px;position:relative;overflow:hidden;flex:0 0 auto;transform-origin:center center;
+  background:linear-gradient(155deg,var(--deep2) 0%,var(--deep) 58%,#03191b 100%);color:var(--paper)}
+
+/* faux street-map background */
+.map{position:absolute;inset:0;opacity:.28;
+  background-image:
+    linear-gradient(rgba(255,255,255,.13) 2px,transparent 2px),
+    linear-gradient(90deg,rgba(255,255,255,.13) 2px,transparent 2px),
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:340px 340px,340px 340px,68px 68px,68px 68px}
+.diag{position:absolute;left:-10%;top:-20%;width:140%;height:140%;opacity:.22;
+  background:repeating-linear-gradient(28deg,transparent 0 118px,rgba(255,255,255,.14) 118px 124px)}
+.glow{position:absolute;width:1100px;height:1100px;right:-260px;top:-380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,176,32,.22),rgba(255,176,32,0) 66%);filter:blur(10px)}
+.glow2{position:absolute;width:900px;height:900px;left:-300px;bottom:-380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(35,209,193,.18),rgba(35,209,193,0) 66%)}
+
+.wrap{position:relative;height:100%;display:flex;flex-direction:column;padding:56px 96px 0}
+
+/* top row */
+.top{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:18px}
+.brand svg{width:62px;height:62px}
+.brand b{font-family:'Archivo',sans-serif;font-size:38px;font-weight:800;letter-spacing:.02em}
+.brand i{display:block;font-style:normal;font-size:15px;letter-spacing:.34em;color:var(--amber);font-weight:600;margin-top:4px}
+.hours{display:flex;align-items:center;gap:12px;border:2px solid rgba(255,255,255,.22);border-radius:999px;
+  padding:12px 26px;font-size:22px;font-weight:600;letter-spacing:.05em;color:rgba(255,255,255,.9)}
+.dot{width:12px;height:12px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 6px rgba(61,220,132,.2);
+  animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(61,220,132,.18)}50%{box-shadow:0 0 0 12px rgba(61,220,132,.05)}}
+
+/* THE ADDRESS — hero */
+.hero{margin-top:56px;display:flex;align-items:flex-start;gap:42px}
+.pin{flex:0 0 auto;margin-top:16px}
+.pin svg{width:132px;height:132px;filter:drop-shadow(0 16px 30px rgba(0,0,0,.45))}
+.addr{flex:1;min-width:0}
+.line1,.line2{max-width:100%;overflow:hidden}
+.kicker{font-size:26px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.line1{font-family:'Archivo',sans-serif;font-size:190px;font-weight:900;line-height:.92;letter-spacing:-.03em;
+  text-transform:uppercase;color:#fff;text-shadow:0 10px 44px rgba(0,0,0,.45);white-space:nowrap}
+.line2{font-family:'Archivo',sans-serif;font-size:104px;font-weight:700;line-height:1.06;letter-spacing:-.015em;
+  text-transform:uppercase;color:var(--amber-soft);margin-top:14px;white-space:nowrap}
+.cross{margin-top:26px;font-size:32px;font-weight:500;color:rgba(242,247,246,.72)}
+.cross b{color:#fff;font-weight:700}
+.chips{display:flex;gap:18px;margin-top:44px}
+.chips div{display:flex;align-items:center;gap:11px;border:1.5px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.05);border-radius:13px;padding:15px 24px;font-size:23px;font-weight:600;
+  color:rgba(255,255,255,.86);white-space:nowrap}
+.chips svg{width:24px;height:24px;fill:var(--amber);flex:0 0 auto}
+
+/* review strip at bottom */
+.strip{position:absolute;left:0;right:0;bottom:120px;padding:0 96px}
+.card{display:flex;align-items:center;gap:32px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:30px 40px;backdrop-filter:blur(6px)}
+.av{width:88px;height:88px;flex:0 0 auto;border-radius:50%;background:linear-gradient(145deg,#ffb020,#ff7a3d);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:32px;color:#2b1602}
+.qt{flex:1;font-size:31px;line-height:1.42;font-weight:500;color:rgba(255,255,255,.95)}
+.qt em{font-style:normal;color:rgba(255,255,255,.6);font-size:22px;display:block;margin-top:8px;font-weight:600;letter-spacing:.04em}
+.rate{flex:0 0 auto;text-align:center;padding-left:34px;border-left:1px solid rgba(255,255,255,.16)}
+.rate .stars{display:flex;gap:6px;justify-content:center}
+.rate .stars svg{width:30px;height:30px;fill:var(--amber)}
+.rate .g{display:flex;align-items:center;gap:9px;margin-top:12px;justify-content:center;font-size:18px;font-weight:600;color:rgba(255,255,255,.72)}
+.rate .g svg{width:26px;height:26px}
+
+/* footer */
+.footer{position:absolute;left:0;right:0;bottom:0;height:96px;background:var(--amber);color:#22160a;
+  display:flex;align-items:center;justify-content:space-between;padding:0 96px}
+.f{display:flex;align-items:center;gap:12px;font-size:30px;font-weight:700;letter-spacing:.01em}
+.f svg{width:30px;height:30px;fill:#22160a}
+.back-link{position:fixed;top:20px;left:24px;z-index:9999;color:#fff;mix-blend-mode:difference;opacity:.85;text-decoration:none;font-size:15px;font-weight:600;font-family:'Inter',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;transition:opacity .2s}
+.back-link:hover{opacity:1}
+</style>
+</head>
+<body>
+<a class="back-link" href="../../index.html">&larr; Back to menu</a>
+<div class="stage">
+  <div class="map"></div><div class="diag"></div><div class="glow"></div><div class="glow2"></div>
+
+  <div class="wrap">
+    <div class="top">
+      <!-- EDIT: brand -->
+      <div class="brand">
+        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#ffb020"/><path d="M10 28l3-8a4 4 0 0 1 3.8-2.7h14.4A4 4 0 0 1 35 20l3 8v6a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2H16v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-6z" fill="#062e30"/><circle cx="15.5" cy="28.5" r="2.2" fill="#ffb020"/><circle cx="32.5" cy="28.5" r="2.2" fill="#ffb020"/></svg>
+        <div><b>NORTHWIND</b><i>AUTO CARE</i></div>
+      </div>
+      <div class="hours"><span class="dot"></span>OPEN TODAY &nbsp;7AM &ndash; 6PM</div>
+    </div>
+
+    <div class="hero">
+      <div class="pin">
+        <svg viewBox="0 0 24 24" fill="#ffb020"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      </div>
+      <div class="addr">
+        <div class="kicker">Find us at</div>
+        <!-- EDIT: address -->
+        <div class="line1" data-fit>482 Harbor Ave</div>
+        <div class="line2" data-fit>Seattle, WA 98104</div>
+        <div class="cross">Corner of <b>Harbor</b> &amp; <b>4th</b> &nbsp;&middot;&nbsp; Free customer parking on site &nbsp;&middot;&nbsp; 3 min from the SODO light-rail</div>
+        <div class="chips">
+          <div><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>6 service bays</div>
+          <div><svg viewBox="0 0 24 24"><path d="M4 16V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1h2.4a2 2 0 0 1 1.7 1l1.9 3v4h-2a2.5 2.5 0 0 1-5 0H11a2.5 2.5 0 0 1-5 0H4z"/></svg>Free courtesy shuttle</div>
+          <div><svg viewBox="0 0 24 24"><path d="M12 2l8 3.5v6c0 5-3.4 9.4-8 10.5-4.6-1.1-8-5.5-8-10.5v-6L12 2zm-1.2 13.6l5.3-5.3-1.4-1.4-3.9 3.9-1.8-1.8-1.4 1.4 3.2 3.2z"/></svg>12-month parts &amp; labour warranty</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="card">
+      <!-- EDIT: reviewer -->
+      <div class="av">PR</div>
+      <div class="qt">&ldquo;Dropped my car off at 8 and it was ready before lunch. Fair price, no upsell, and they showed me exactly what they replaced.&rdquo;
+        <em>PRIYA RAMAN &middot; GOOGLE REVIEW</em></div>
+      <div class="rate">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+        </div>
+        <div class="g">
+          <svg viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+          4.8 &middot; 612 reviews
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT: contact strip -->
+  <div class="footer">
+    <div class="f"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>(206) 555-0178</div>
+    <div class="f">SEARCH &ldquo;NORTHWIND AUTO CARE&rdquo; ON GOOGLE MAPS</div>
+    <div class="f"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.95a15.6 15.6 0 0 0-1.4-3.6A8.03 8.03 0 0 1 18.9 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a8.1 8.1 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26zm.84 2h2.95c.34 1.28.81 2.5 1.4 3.6A8.03 8.03 0 0 1 5.1 16zm2.95-8H5.1a8.03 8.03 0 0 1 4.35-3.6A15.6 15.6 0 0 0 8.05 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82A13.6 13.6 0 0 1 12 19.96zM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4zm.2 5.6c.59-1.1 1.06-2.32 1.4-3.6h2.95a8.03 8.03 0 0 1-4.35 3.6zM16.36 14a16.5 16.5 0 0 0 0-4h3.38a8.1 8.1 0 0 1 0 4h-3.38z"/></svg>northwindauto.com</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var s=document.querySelector('.stage');
+  function fit(){s.style.transform='scale('+Math.min(innerWidth/1920,innerHeight/1080)+')';}
+  addEventListener('resize',fit);fit();
+
+  /* Auto-shrink long text so it never overflows the slide */
+  function fitW(el){var f=parseFloat(getComputedStyle(el).fontSize),g=140;
+    while(el.scrollWidth>el.clientWidth+1&&f>16&&g--){f-=2;el.style.fontSize=f+'px';}}
+  function fitH(el,max){var f=parseFloat(getComputedStyle(el).fontSize),g=140;
+    while(el.scrollHeight>max&&f>16&&g--){f-=2;el.style.fontSize=f+'px';}}
+  function run(){
+    document.querySelectorAll('[data-fit]').forEach(fitW);
+    document.querySelectorAll('[data-fitv]').forEach(function(el){fitH(el,parseFloat(el.dataset.fitv));});
+  }
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(run);}
+  setTimeout(run,1200);run();
+})();
+</script>
+<script src="../../assets/js/view-source.js"></script>
+</body>
+</html>
